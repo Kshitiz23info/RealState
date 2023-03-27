@@ -238,6 +238,9 @@
                 <div class="">
                   You must agree before submitting.
                 </div>
+
+
+
               </div>
             </div>
             <button class="btn btn-primary" type="submit">Submit form</button>
