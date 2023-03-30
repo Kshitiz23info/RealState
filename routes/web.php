@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ Route::get('/', function () {
     $info['item'] = \App\Models\Listing::orderBy('id', 'desc')->limit(15)->get();
     return view('welcome', $info);
 });
+
+Route::get("/contact-us", [App\Http\Controllers\ContactController::class, 'index'])->name('contact-us');
 
 Auth::routes();
 
