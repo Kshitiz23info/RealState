@@ -25,10 +25,19 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
       <!-- Main Stylesheet File -->
-  <link href={{url("frontend/css/style.css")}} rel="stylesheet">
+  <link href={{asset("frontend/css/style.css")}} rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     @stack('styles')
 </head>
 
@@ -137,7 +146,7 @@
         <span></span>
         <span></span>
       </button>
-      <a class="navbar-brand text-brand" href="/home">Real<span class="color-b">State</span></a>
+      <a class="navbar-brand text-brand" href="{{url('/')}}">Real<span class="color-b">State</span></a>
       <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fa fa-search" aria-hidden="true"></span>
@@ -148,13 +157,13 @@
             <a class="nav-link " href="/buy" >Buy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  " href="/rent">Rent</a>
+            <a class="nav-link  " href="{{route('listings.index')}}">Rent</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="/sellpanel">Sell</a>
+            <a class="nav-link " href="{{route('sell.index')}}">Sell</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/mrental">Manage Rentals</a>
+            <a class="nav-link" href="{{route('manage-listings.index')}}">Manage Rentals</a>
           </li>
 
           {{-- <li class="nav-item">
@@ -211,7 +220,7 @@
     @include('frontend.layouts.footer')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
   <script>
     const links = document.querySelectorAll("nav a");

@@ -312,6 +312,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
 
         ],
+        [
+            'text' => 'Properties',
+            'route'  => 'admin-listings.index',
+            'icon' => 'fas fa-fw fa-landmark',
+
+        ],
 //        [
 //            'text'        => 'pages',
 //            'url'         => 'admin/pages',

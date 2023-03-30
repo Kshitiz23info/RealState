@@ -20,8 +20,8 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->double('price')->nullable();
             $table->string('location')->nullable();
-            $table->double('latitude')->nullable();
-            $table->double('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->longText('photo_url')->nullable();
             $table->string('video_url')->nullable();
             $table->longText('features')->nullable();

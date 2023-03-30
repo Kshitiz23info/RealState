@@ -171,24 +171,26 @@
             </div>
         </div>
         <div id="property-carousel" class="owl-carousel owl-theme">
+            @foreach($item as $item)
             <div class="carousel-item-b">
-                <div class="card-box-a card-shadow">
+                <div class="card-box-a card-shadow" style="position: relative">
+                    <h4><span class="badge text-bg-warning text-white text-lg" style="position: absolute;">For {{ ucfirst(trans($item->type))}}</span></h4>
                     <div class="img-box-a">
-                        <img src={{url("frontend/img/property-6.jpg")}} alt="" class="img-a img-fluid">
+                        <img src={{!$item->getMedia('listings')->isEmpty()?$item->getMedia('listings')[0]->getFullUrl():''}} alt="Image" class="img-a img-fluid">
                     </div>
                     <div class="card-overlay">
                         <div class="card-overlay-a-content">
                             <div class="card-header-a">
                                 <h2 class="card-title-a">
-                                    <a href="property-single.html">206 Mount
-                                        <br /> Olive Road Two</a>
+                                    <a href="{{route('listings.show', $item->id)}}">{{$item->title}}
+                                    </a>
                                 </h2>
                             </div>
                             <div class="card-body-a">
                                 <div class="price-box d-flex">
-                                    <span class="price-a">contact | $ 12.000</span>
+                                    <span class="price-a">Price | Rs. {{$item->price}}</span>
                                 </div>
-                                <a href="#" class="link-a">Click here to view
+                                <a href="{{route('listings.show', $item->id)}}" class="link-a">Click here to view
                                     <span class="ion-ios-arrow-forward"></span>
                                 </a>
                             </div>
@@ -196,21 +198,21 @@
                                 <ul class="card-info d-flex justify-content-around">
                                     <li>
                                         <h4 class="card-info-title">Area</h4>
-                                        <span>340m
-                        <sup>2</sup>
-                      </span>
+                                        <span>{{json_decode($item->features)->area ?:0}}
+                                        <sup>2</sup>
+                                      </span>
                                     </li>
                                     <li>
                                         <h4 class="card-info-title">Beds</h4>
-                                        <span>2</span>
+                                        <span>{{json_decode($item->features)->bedroom ?:0}}</span>
                                     </li>
                                     <li>
                                         <h4 class="card-info-title">Baths</h4>
-                                        <span>4</span>
+                                        <span>{{json_decode($item->features)->bathroom ?:0}}</span>
                                     </li>
                                     <li>
                                         <h4 class="card-info-title">Garages</h4>
-                                        <span>1</span>
+                                        <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -218,147 +220,8 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item-b">
-                <div class="card-box-a card-shadow">
-                    <div class="img-box-a">
-                        <img src={{url("frontend/img/property-3.jpg")}} alt="" class="img-a img-fluid">
-                    </div>
-                    <div class="card-overlay">
-                        <div class="card-overlay-a-content">
-                            <div class="card-header-a">
-                                <h2 class="card-title-a">
-                                    <a href="property-single.html">157 West
-                                        <br /> Central Park</a>
-                                </h2>
-                            </div>
-                            <div class="card-body-a">
-                                <div class="price-box d-flex">
-                                    <span class="price-a">contact | $ 12.000</span>
-                                </div>
-                                <a href="property-single.html" class="link-a">Click here to view
-                                    <span class="ion-ios-arrow-forward"></span>
-                                </a>
-                            </div>
-                            <div class="card-footer-a">
-                                <ul class="card-info d-flex justify-content-around">
-                                    <li>
-                                        <h4 class="card-info-title">Area</h4>
-                                        <span>340m
-                        <sup>2</sup>
-                      </span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Beds</h4>
-                                        <span>2</span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Baths</h4>
-                                        <span>4</span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Garages</h4>
-                                        <span>1</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item-b">
-                <div class="card-box-a card-shadow">
-                    <div class="img-box-a">
-                        <img src={{url("frontend/img/property-7.jpg")}} alt="" class="img-a img-fluid">
-                    </div>
-                    <div class="card-overlay">
-                        <div class="card-overlay-a-content">
-                            <div class="card-header-a">
-                                <h2 class="card-title-a">
-                                    <a href="property-single.html">245 Azabu
-                                        <br /> Nishi Park let</a>
-                                </h2>
-                            </div>
-                            <div class="card-body-a">
-                                <div class="price-box d-flex">
-                                    <span class="price-a">contact | $ 12.000</span>
-                                </div>
-                                <a href="property-single.html" class="link-a">Click here to view
-                                    <span class="ion-ios-arrow-forward"></span>
-                                </a>
-                            </div>
-                            <div class="card-footer-a">
-                                <ul class="card-info d-flex justify-content-around">
-                                    <li>
-                                        <h4 class="card-info-title">Area</h4>
-                                        <span>340m
-                        <sup>2</sup>
-                      </span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Beds</h4>
-                                        <span>2</span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Baths</h4>
-                                        <span>4</span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Garages</h4>
-                                        <span>1</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item-b">
-                <div class="card-box-a card-shadow">
-                    <div class="img-box-a">
-                        <img src={{url("frontendfrontend/img/property-10.jpg")}} alt="" class="img-a img-fluid">
-                    </div>
-                    <div class="card-overlay">
-                        <div class="card-overlay-a-content">
-                            <div class="card-header-a">
-                                <h2 class="card-title-a">
-                                    <a href="property-single.html">204 Montal
-                                        <br /> South Bela Two</a>
-                                </h2>
-                            </div>
-                            <div class="card-body-a">
-                                <div class="price-box d-flex">
-                                    <span class="price-a">contact | $ 12.000</span>
-                                </div>
-                                <a href="property-single.html" class="link-a">Click here to view
-                                    <span class="ion-ios-arrow-forward"></span>
-                                </a>
-                            </div>
-                            <div class="card-footer-a">
-                                <ul class="card-info d-flex justify-content-around">
-                                    <li>
-                                        <h4 class="card-info-title">Area</h4>
-                                        <span>340m
-                        <sup>2</sup>
-                      </span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Beds</h4>
-                                        <span>2</span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Baths</h4>
-                                        <span>4</span>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Garages</h4>
-                                        <span>1</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>

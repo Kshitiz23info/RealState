@@ -28,7 +28,7 @@ class UserController extends BaseController
         $info = $this->crudInfo();
         $info['hideCreate'] = true;
         $info['items'] = User::where('role', 'user')->orderBy('id', 'desc')->paginate(10);
-        return view('admin.users.index', $info);
+        return view($this->indexResource(), $info);
     }
 
     /**

@@ -16,14 +16,14 @@
               @foreach ($rentdetail as $rentdetail)
             <div class="card mr-5 mb-5" style="width: 18rem">
               <div class="img">
-                <img class="panel-img" src="{{ asset('storage/images/'.$rentdetail ->img_link) }}" alt="Rent Property Image">
+                <img class="panel-img" src="http://localhost:8000/storage/12/1679988078226-114.jpg" alt="Rent Property Image">
               </div>
                 <div class="card-body">
                   <h5 class="card-title">Area : {{ $rentdetail->area }} m<sup>2</sup></h5>
                   <h5 class="card-title">Price : Rs {{ $rentdetail->price }}</h5>
                   {{-- <p class="card-text"> Price :{{ $rentdetail->price }}</p> --}}
-                  <a href="{{ url('rent-edit',$rentdetail->id) }}" type="submit" class="btn btn-primary">Edit</a> 
-                  <a href="{{url('rentdelete',$rentdetail->id)}}" type="submit" class="btn btn-danger ml-5">Delete</a> 
+                  <a href="{{ url('rent-edit',$rentdetail->id) }}" type="submit" class="btn btn-primary">Edit</a>
+                  <a href="{{url('rentdelete',$rentdetail->id)}}" type="submit" class="btn btn-danger ml-5">Delete</a>
                 </div>
 
 
@@ -31,5 +31,5 @@
               @endforeach
             </div>
         </div>
-  </section> 
+  </section>
 @endsection

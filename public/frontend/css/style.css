@@ -1108,6 +1108,7 @@ label {
 
 .card-header-a .card-title-a a {
     color: #ffffff;
+    font-size:25px;
     text-decoration: none;
 }
 
@@ -1641,9 +1642,9 @@ footer .credits {
     bottom: 0; */
     width: 100%;
   }
-  
-  
-  
+
+
+
 
 /*======================================
 //--//-->   FORM INPUT
@@ -2135,7 +2136,7 @@ footer .credits {
 
 
 /*======================================
-//--//-->   Sell form 
+//--//-->   Sell form
 ======================================*/
 
 /* .form-container my-2 p-2{
@@ -2165,4 +2166,4 @@ footer .credits {
     justify-content: flex-end;
     padding: 20px;
     color: #26a356;
-  } 
+  }
