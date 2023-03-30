@@ -42,4 +42,5 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::resource('/sell', App\Http\Controllers\User\SellController::class);
 });
 Route::get('/listings/show/{id}', [App\Http\Controllers\User\ListingController::class, 'show'])->name('listings.show');
+Route::resource('/buy', App\Http\Controllers\User\BuyController::class);
 

@@ -41,33 +41,5 @@
             $('.file-section').append(`<span class=" bg-light h4 file-message">${numFiles ==1 ? "1 Image": numFiles+" Images"} Uploaded</span>`);
         });
 
-        checkType();
-        $(document).on('change', '#type', function () {
-            checkType()
-        })
-
-        function checkType()
-        {
-            let val = $('#type').val();
-            if(val == "Land")
-            {
-                $('#bedroomLabel').css('display', 'none');
-                $('#bathroomLabel').css('display', 'none');
-                $('#no_of_storiesLabel').css('display', 'none');
-                $('#livingroomLabel').css('display', 'none');
-                $('#kitchenLabel').css('display', 'none');
-                $('#road_widthLabel').css('display', 'none');
-                $('#parkingLabel').css('display', 'none');
-            }
-            else{
-                $('#bedroomLabel').show();
-                $('#bathroomLabel').show();
-                $('#no_of_storiesLabel').show();
-                $('#livingroomLabel').show();
-                $('#kitchenLabel').show();
-                $('#road_widthLabel').show();
-                $('#parkingLabel').show();
-            }
-        }
     </script>
 @endpush

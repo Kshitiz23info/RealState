@@ -48,7 +48,7 @@
         </div> --}}
     </div>
 
-    <div class="col-md-4 mb-3" id="no_of_storieslabel">
+    <div class="col-md-4 mb-3" id="no_of_storiesLabel">
         <label for="no_of_stories">Number of stories</label>
         <input type="number" class="form-control" id="no_of_stories" placeholder="No of stories" value="{{isset($features) ? $features['no_of_stories'] : ''}}" name="no_of_stories">
         {{-- <div class="valid-feedback">
@@ -66,6 +66,7 @@
     <div class="col-md-4 mb-3" id="parkingLabel">
         <label for="parking">Is parking available?</label>
         <select class="form-control" name="parking" id="parking">
+            <option value="{{null}}">Select Option</option>
             <option value="yes"{{isset($features) ? ($features['parking'] == "yes"?'selected': ''): ''}}>Yes</option>
             <option value="no"{{isset($features) ? ($features['parking'] == "no"?'selected': ''): ''}}>No</option>
         </select>
@@ -75,8 +76,8 @@
             <label>Property Type</label><br>
             {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
             <select class="custom-select type"  name="type" id="type">
-                <option value="Home" {{isset($features) ? ($features['bedroom'] == "Home"?'selected': ''): ''}}>Home</option>
-                <option value="Land" {{isset($features) ? ($features['bedroom'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
+                <option value="Home" {{isset($features) ? ($features['type'] == "Home"?'selected': ''): ''}}>Home</option>
+                <option value="Land" {{isset($features) ? ($features['type'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
             </select>
         </div>
     </div>

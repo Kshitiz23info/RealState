@@ -175,7 +175,7 @@
             <div class="carousel-item-b">
                 <div class="card-box-a card-shadow" style="position: relative">
                     <h4><span class="badge text-bg-warning text-white text-lg" style="position: absolute;">For {{ ucfirst(trans($item->type))}}</span></h4>
-                    <div class="img-box-a">
+                        <div class="img-box-a">
                         <img src={{!$item->getMedia('listings')->isEmpty()?$item->getMedia('listings')[0]->getFullUrl():''}} alt="Image" class="img-a img-fluid">
                     </div>
                     <div class="card-overlay">

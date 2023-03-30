@@ -68,7 +68,7 @@ class ManageListingController extends BaseController
             "no_of_stories" => $request->no_of_stories,
             "road_width" => $request->road_width,
             "parking" => $request->parking,
-            "type" => 'rent',
+            "type" => $request->type,
         ];
 
         $data = [

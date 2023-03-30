@@ -64,7 +64,7 @@ class SellController extends BaseController
             "no_of_stories" => $request->no_of_stories,
             "road_width" => $request->road_width,
             "parking" => $request->parking,
-            "type" => 'rent',
+            "type" => $request->type,
         ];
 
         $data = [
@@ -162,7 +162,7 @@ class SellController extends BaseController
             'longitude' => $request->longitude?:null,
             'user_id' => auth()->user()->id,
             'features' => json_encode($features, true),
-            'type' => 'rent',
+            'type' => 'sale',
         ];
 
         $listing = Listing::findOrFail($id);
@@ -195,6 +195,10 @@ class SellController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $listing = Listing::findOrFail($id);
+        $listing->delete();
+        $listing->clearMediaCollection('listings');
+        $listing->clearMediaCollection('video');
+        return redirect()->back()->with('success', 'Listings Deleted Successfully.');
     }
 }
