@@ -118,12 +118,12 @@
                                                 <span class="ion-ios-arrow-forward"></span>
                                             </a>
                                             <div class="d-inline-flex float-right">
-                                                <a href="{{ route('listings.edit',$item->id) }}" type="submit" class="btn btn-primary mr-2"><i class="fas fa-pencil-alt fa-md"></i></a>
-                                                <form class="d-inline" action="{{ route('listings.destroy',$item->id) }}"
-                                                      method="POST" onclick="return confirm('Are you sure?')">
+                                                <form class="d-inline" action="{{ route('contact.index') }}"
+                                                      method="GET">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button href="{{route('listings.destroy',$item->id)}}" type="submit" class="btn btn-danger"><i class="fas fa-trash fa-md"></i></button>
+                                                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                                    <input type="hidden" name="property_id" value="{{$item->id}}">
+                                                    <button href="{{ route('contact.index') }}" type="submit" class="btn btn-success contact">Contact Agent</button>
                                                 </form>
                                             </div>
 

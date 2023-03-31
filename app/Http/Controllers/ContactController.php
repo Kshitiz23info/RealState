@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Listing;
+use App\Models\User;
+use App\Notifications\ContactNotification;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,10 +15,12 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|Illuminate\Contracts\View\View;
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        return view('contact-us');
+
+        $info['user'] = User::findOrFail($request->user_id);
+        $info['property'] = Listing::findOrFail($request->property_id);
+        return view('contact-us', $info);
 
     }
 
@@ -37,7 +42,36 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'user_id' => $request->user_id,
+            'listing_id' => $request->property_id,
+            'message' => $request->message,
+        ];
+
+//        dd($details);
+        $owner = User::findOrFail($request->property_owner);
+        $admin = User::where('name', 'Admin')->first();
+
+        $contact = new Contact($data);
+        $contact->save();
+
+        $user = User::findOrFail($request->user_id);
+        $property = Listing::findOrFail($request->property_id);
+
+//        $details = [
+//            'user_id' => $request->user_id,
+//            'property_id' => $request->property_id,
+//        ];
+        $owner->notify(new ContactNotification($user, $property, $owner));
+        $admin->notify(new ContactNotification($user, $property, $admin));
+
+        return redirect()->back()->with('success', 'Contact Submitted Successfully!');
+
+
     }
 
     /**
