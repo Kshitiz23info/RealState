@@ -42,7 +42,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-
+//dd($request->all());
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -52,15 +52,20 @@ class ContactController extends Controller
             'message' => $request->message,
         ];
 
-//        dd($details);
-        $owner = User::findOrFail($request->property_owner);
-        $admin = User::where('name', 'Admin')->first();
 
+        $owner = User::findOrFail($request->property_owner);
+
+        $admin = User::where('name', 'Admin')->first();
         $contact = new Contact($data);
         $contact->save();
 
-        $user = User::findOrFail($request->user_id);
         $property = Listing::findOrFail($request->property_id);
+
+        $user = [
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ];
 
 //        $details = [
 //            'user_id' => $request->user_id,

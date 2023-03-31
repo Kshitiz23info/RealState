@@ -117,15 +117,15 @@
                                                 view
                                                 <span class="ion-ios-arrow-forward"></span>
                                             </a>
-                                            <div class="d-inline-flex float-right">
-                                                <form class="d-inline" action="{{ route('contact.index') }}"
-                                                      method="GET">
-                                                    @csrf
-                                                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-                                                    <input type="hidden" name="property_id" value="{{$item->id}}">
-                                                    <button href="{{ route('contact.index') }}" type="submit" class="btn btn-success contact">Contact Agent</button>
-                                                </form>
-                                            </div>
+{{--                                            <div class="d-inline-flex float-right">--}}
+{{--                                                <form class="d-inline" action="{{ route('contact.index') }}"--}}
+{{--                                                      method="GET">--}}
+{{--                                                    @csrf--}}
+{{--                                                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">--}}
+{{--                                                    <input type="hidden" name="property_id" value="{{$item->id}}">--}}
+{{--                                                    <button href="{{ route('contact.index') }}" type="submit" class="btn btn-success contact">Contact Agent</button>--}}
+{{--                                                </form>--}}
+{{--                                            </div>--}}
 
                                         </div>
                                         <div class="card-footer-a">
@@ -134,8 +134,8 @@
                                                     <h4 class="card-info-title">Area</h4>
                                                     {{json_decode($item->features)->area}}
                                                     <span> m
-                        <sup>2</sup>
-                      </span>
+                                                <sup>2</sup>
+                                              </span>
                                                 </li>
                                                 <li>
                                                     <h4 class="card-info-title">Beds</h4>

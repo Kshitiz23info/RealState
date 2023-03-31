@@ -37,15 +37,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 });
 ////user
 Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::resource('/listings', App\Http\Controllers\User\ListingController::class)->except([
-        'show'
-    ]);
+
     Route::get('/listings/file/delete', [App\Http\Controllers\User\ManageListingController::class, 'deleteFile'])->name('listings.image.delete');
     Route::resource('/manage-listings', App\Http\Controllers\User\ManageListingController::class);
     Route::resource('/sell', App\Http\Controllers\User\SellController::class);
 });
+Route::resource('/listings', App\Http\Controllers\User\ListingController::class)->except([
+    'show'
+]);
 Route::get('/listings/show/{id}', [App\Http\Controllers\User\ListingController::class, 'show'])->name('listings.show');
-Route::get('/contact-info/property/user', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+//Route::get('/contact-info/property/user', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact-info/property', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::resource('/buy', App\Http\Controllers\User\BuyController::class);
 

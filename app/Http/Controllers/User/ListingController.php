@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\BaseController;
 use App\Models\Listing;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -21,7 +22,13 @@ class ListingController extends BaseController{
      */
     public function index()
     {
-        $info['listings'] = Listing::where('user_id','!=', auth()->user()->id)->get();
+        if (auth()->user())
+        {
+            $info['listings'] = Listing::where('user_id','!=', auth()->user()->id)->get();
+        }
+        else{
+            $info['listings'] = Listing::all();
+        }
         return view($this->indexResource(), $info);
     }
 
@@ -105,6 +112,10 @@ class ListingController extends BaseController{
     public function show($id)
     {
         $info['item'] = Listing::findOrFail($id);
+        if(auth()->user())
+        {
+            $info['user'] = User::findOrFail(auth()->user()->id);
+        }
         return view($this->showResource(), $info);
     }
 
