@@ -20,17 +20,48 @@
         /* add padding  */
         .left-addon input  { padding-left:  30px; }
         .right-addon input { padding-right: 30px; }
+
+        .buy_section   {
+
+            height: 100vh; overflow:hidden;
+
+        }
+
+        .property-list_section {
+
+        overflow-x: hidden; overflow-y:scroll; height:70vh;
+
+        }
+
+        @media screen and (max-width:756px) {
+
+            .buy_section {
+
+                height: auto;
+
+            }
+
+            .property-list_section {
+
+                overflow:auto ;
+                height:auto;
+
+            }
+
+        }
+
     </style>
 @endpush
 
 @section('content')
 
+<section class="buy_section">
     <!--/ Intro Single star /-->
-    <section class="intro-single" style="padding: 4rem;">
+    <section class="intro-single" style="padding: 4rem; ">
 
     </section>
     <div>
-        <div class="container-fluid bg-light m-0 py-2" >
+        <div class="container-fluid bg-light m-0 py-2">
             <div class="row">
                 <form class="rent-filter">
                     <div class="form-group">
@@ -91,13 +122,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="overflow: hidden">
+                <div class="col-md-6 property-list_section" style="">
                     <section class="property-grid grid">
                         <div class="container">
                             <div class="row">
                                 {{--                    {{dd($listings['3']->getMedia('listings'))}}--}}
                                 @foreach ($listings ?? [] as $item)
-                                    <div class="col-md-4">
+                                    <div class="col-12 col-md-12 col-lg-6">
                                         <div class="card-box-a card-shadow">
                                             <div class="img-box-a">
                                                 @if($item->getMedia('listings')->isNotEmpty())
@@ -172,7 +203,7 @@
         </div>
     </div>
 
-
+</section>
 
     {{--      <div class="row">--}}
     {{--          @foreach ($rentdetail as $rentdetail)--}}
