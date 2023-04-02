@@ -12,9 +12,19 @@ class FavoriteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $userId = auth()->user()->id;
+        $favorite = Favorite::where(['user_id' => $userId, 'listing_id' =>  $request->favorite])->first();
+        if($favorite)
+        {
+            $favorite->delete();
+        }
+        else{
+            $fav = new Favorite(['user_id'=>$userId,'listing_id'=>$request->favorite]);
+            $fav->save();
+        }
+        return redirect()->back();
     }
 
     /**
@@ -35,7 +45,6 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

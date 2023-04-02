@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Favorite;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +47,9 @@ class BuyController extends BaseController
                 ->whereRaw("(6371 * acos( cos( radians('$lat') ) * cos( radians(latitude) ) * cos( radians(longitude) - radians('$lon') ) + sin( radians('$lat') ) * sin( radians(latitude) ) ) ) <= $distance");
         if(auth()->user())
         {
-            $properties = $properties->whereNotIn('user_id', auth()->user()->id);
+            $properties = $properties->whereNot('user_id', auth()->user()->id);
+            $info['favorites'] = Favorite::where('user_id', auth()->user()->id)->get();
+//            dd()
         }
         $properties = $properties->where('type', 'sale')->get();
         $info['listings'] = $properties;

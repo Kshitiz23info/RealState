@@ -25,7 +25,7 @@ Route::get("/contact-us", [App\Http\Controllers\ContactController::class, 'index
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+//Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login-redirect', [App\Http\Controllers\Auth\LoginController::class, 'loginRedirect'])->name('login-redirect');
 
 ////admin
@@ -49,4 +49,5 @@ Route::get('/listings/show/{id}', [App\Http\Controllers\User\ListingController::
 //Route::get('/contact-info/property/user', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact-info/property', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::resource('/buy', App\Http\Controllers\User\BuyController::class);
+Route::get('/favorite', [App\Http\Controllers\FavoriteController::class, 'index'])->name('favorite.store');
 

@@ -95,7 +95,6 @@
                             <option value="">All</option>
                             <option>50000-60000</option>
                             <option>5000-100000</option>
-                            <option>3,00,000-4,00,000</option>
                         </select>
                         <label for="floatingSelect">Price Range</label>
 
@@ -117,12 +116,13 @@
                 <div class="col-md-6 property-list_section" style="">
                     <section class="property-grid grid">
                         <div class="container">
+{{--                            {{dd($listings)}}--}}
                             <div class="row properties">
                             @foreach ($listings ?? [] as $item)
                                     <div class="col-md-6">
                                         <div class="card h-100 m-0 p-0">
 {{--                                            {{dd($item->favorites)}}--}}
-
+{{----}}
                                             <div class="img">
                                                 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                                                     <div class="carousel-inner">
@@ -156,6 +156,20 @@
                                             <div class="footer mx-3 mb-3 mt-0">
                                                 <div class="d-inline-flex float-left text-xs my-3">
                                                     <a href="{{route('listings.show', $item->id)}}">Click here to view ></a>
+                                                    @if(isset($favorites))
+                                                        <form action="{{route('favorite.store')}}" method="GET">
+                                                            <input type="hidden" id="favHidden" name="favorite">
+                                                        </form>
+                                                    @foreach($favorites as $fav)
+                                                        @if($fav->listing_id == $item->id)
+                                                            <i class="fa-solid fa-heart fa-xl favorite" data-value="{{$item->id}}"></i>
+                                                        @endif
+                                                    @endforeach
+                                                    @endif
+{{--                                                    <i class="fa-regular fa-heart fa-xl favorite" data-value="{{$item->id}}"></i>--}}
+
+                                                    {{--                                                    {{dd($favorites)}}--}}
+{{--                                                    <i class="{{isset($favorites) ? $favorites->listing_id == $item->id ? 'fa-solid fa-heart fa-xl' : 'fa-regular fa-heart fa-xl' : null }}" style="color: #fd0808;"></i>--}}
                                                 </div>
                                                 <div class="d-inline-flex float-right">
 
@@ -176,11 +190,13 @@
 @endsection
 @push('scripts')
     <script>
+        $(document).on('click', '.favorite', function(){
+          $(this).prev().children().val($(this).data('value'));
+          $(this).prev().submit();
+        })
         const location23 = $('.location').val();
         const api_url =
             "https://nominatim.openstreetmap.org/search.php?city="+location23+"&format=jsonv2";
-
-
 
         $('.location').on('keyup', function () {
             const url = "https://nominatim.openstreetmap.org/search.php?city="+$(this).val()+"&format=jsonv2";
