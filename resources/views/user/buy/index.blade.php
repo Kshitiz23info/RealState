@@ -65,37 +65,42 @@
             <div class="row">
                 <form class="rent-filter">
                     <div class="form-group">
-                        <div class="input-group inner-addon right-addon">
-                            <input type="text" class="form-control" placeholder="Location" >
+                        <div class="input-group inner-addon right-addon form-floating">
+                            <input type="text" class="form-control location" placeholder="Location" list="locations" value="Pokhara, Kaski, Gandaki Pradesh, Nepal" id="floatingInput" data-lat="28.209538" data-lon="83.991402">
+                            <ul id="locations">
+                            </ul>
                             <span><i class="fas fa-search"></i></span>
+                            <label for="floatingInput">Location</label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <select class="form-control custom-select"  id="type">
-                            <option value="">Type</option>
-                            <option value="all">All</option>
+                    <div class="form-group form-floating">
+                        <select class="form-control form-select custom-select type"  id="floatingSelect">
+                            <option value="{{null}}">All</option>
                             <option value="Home">House</option>
                             <option value="Land">Land</option>
                         </select>
+                        <label for="floatingSelect">Type</label>
                     </div>
 
-                    <div class="form-group">
-                        <select class="form-control custom-select"  id="sale">
+                    <div class="form-group form-floating">
+                        <select class="form-control custom-select form-select purpose"  id="floatingSelect">
                             <option value="sale">For Sale</option>
                             <option value="rent">For Rent</option>
                         </select>
+                        <label for="floatingSelect">Purpose</label>
                     </div>
 
-                    <div class="form-group">
-                        <select class="form-control custom-select"  id="price">
-                            <option>Price</option>
-                            <option>All</option>
-                            <option>1,00,000-2,00,000</option>
-                            <option>2,00,000-3,00,000</option>
+                    <div class="form-group form-floating">
+                        <select class="form-control custom-select form-select price"  id="floatingSelect">
+                            <option value="">All</option>
+                            <option>50000-60000</option>
+                            <option>5000-100000</option>
                             <option>3,00,000-4,00,000</option>
                         </select>
+                        <label for="floatingSelect">Price Range</label>
+
                     </div>
-                    <button class="searchbtn">Save Search</button>
+                    <button class="searchbtn" type="button">Search</button>
                 </form>
             </div>
         </div>
@@ -104,96 +109,60 @@
                 <div class="col-md-6">
                     <div class="card" >
                         <div id="map" style="height:70vh">
+                            <input type="hidden" value='@json($listings)' id="listings">
                             <div id="map" style="height: 280px;"></div>
-                            <script>
-                                // Create map instance
-                                var map = L.map('map');
-                                map.setView([28.2096, 83.9856], 14);
-                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-                                    maxZoom: 18,
-                                }).addTo(map);
-                                L.marker([28.2096, 83.9856]).addTo(map);
-                                L.marker([28.2088043126984, 83.98594269607614]).addTo(map);
-                                L.marker([28.217122739703402, 83.99007797197557]).addTo(map);
-
-
-                            </script>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 property-list_section" style="">
                     <section class="property-grid grid">
                         <div class="container">
-                            <div class="row">
-                                {{--                    {{dd($listings['3']->getMedia('listings'))}}--}}
-                                @foreach ($listings ?? [] as $item)
-                                    <div class="col-12 col-md-12 col-lg-6">
-                                        <div class="card-box-a card-shadow">
-                                            <div class="img-box-a">
-                                                @if($item->getMedia('listings')->isNotEmpty())
-                                                    <img src="{{$item->getMedia('listings')[0]->getFullUrl()}}" alt="Property Image"
-                                                         class="img-a img-fluid thumbnail" style="object-fit: cover">
-                                                @else
-                                                    <img src="{{asset('img/download.png')}}" alt="Property Image"
-                                                         class="img-a img-fluid thumbnail" style="object-fit: cover">
-                                                @endif
-                                            </div>
-                                            <div class="card-overlay">
-                                                <div class="card-overlay-a-content">
-                                                    <div class="card-header-a">
-                                                        <h2 class="card-title-a">
-                                                            <a href="{{route($route.'show', $item->id)}}">{{$item->title}}
-                                                                <br/> </a>
-                                                        </h2>
-                                                    </div>
-                                                    <div class="card-body-a">
-                                                        <div class="price-box d-flex">
-                                                            <span class="price-a">Price | Rs {{$item->price}}</span>
-                                                        </div>
-                                                        <a href="{{route($route.'show', $item->id)}}" class="link-a mr-2">Click here to
-                                                            view
-                                                            <span class="ion-ios-arrow-forward"></span>
-                                                        </a>
-                                                        <div class="d-inline-flex float-right">
-                                                            <a href="{{ route($route.'edit',$item->id) }}" type="submit" class="btn btn-primary mr-2"><i class="fas fa-pencil-alt fa-md"></i></a>
-                                                            <form class="d-inline" action="{{ route($route.'destroy',$item->id) }}"
-                                                                  method="POST" onclick="return confirm('Are you sure?')">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button href="{{route($route.'destroy',$item->id)}}" type="submit" class="btn btn-danger"><i class="fas fa-trash fa-md"></i></button>
-                                                            </form>
-                                                        </div>
+                            <div class="row properties">
+                            @foreach ($listings ?? [] as $item)
+                                    <div class="col-md-6">
+                                        <div class="card h-100 m-0 p-0">
+{{--                                            {{dd($item->favorites)}}--}}
 
+                                            <div class="img">
+                                                <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                                                    <div class="carousel-inner">
+                                                        @foreach($item->photo_url ?? [] as $photo)
+                                                        <div class="carousel-item active">
+                                                            <img src="{{$photo }}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover">
+                                                        </div>
+                                                        @endforeach
                                                     </div>
-                                                    <div class="card-footer-a">
-                                                        <ul class="card-info d-flex justify-content-around">
-                                                            <li>
-                                                                <h4 class="card-info-title">Area</h4>
-                                                                {{json_decode($item->features)->area}}
-                                                                <span> m
-                                                        <sup>2</sup>
-                                                      </span>
-                                                            </li>
-                                                            <li>
-                                                                <h4 class="card-info-title">Beds</h4>
-                                                                <span>{{json_decode($item->features)->bedroom}}</span>
-                                                            </li>
-                                                            <li>
-                                                                <h4 class="card-info-title">Baths</h4>
-                                                                <span>{{json_decode($item->features)->bathroom}}</span>
-                                                            </li>
-                                                            <li>
-                                                                <h4 class="card-info-title">Parking</h4>
-                                                                <span>{{json_decode($item->features)->parking}}</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+{{--                                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">--}}
+{{--                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+{{--                                                        <span class="visually-hidden">Previous</span>--}}
+{{--                                                    </button>--}}
+{{--                                                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">--}}
+{{--                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+{{--                                                        <span class="visually-hidden">Next</span>--}}
+{{--                                                    </button>--}}
+
+                                                </div>
+{{--                                                @if($item->getMedia('listings')->isNotEmpty())--}}
+{{--                                                    <img class="panel-img" src="{{$item->getMedia('listings')[0]->getFullUrl()}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
+{{--                                                @else--}}
+{{--                                                    <img class="panel-img" src="{{asset('img/download.png')}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
+{{--                                                @endif--}}
+                                            </div>
+                                            <div class="card-body mb-0 pb-0">
+                                                <p class="text-sm font-weight-bold m-0 p-0">Rs. {{ $item->price }}</p>
+                                                <p class="text-xs m-0 p-0"><span class="font-weight-bold"> {{ json_decode($item->features)->bedroom }}</span> beds | <span class="font-weight-bold">{{ json_decode($item->features)->bathroom }}</span>baths | <span class="font-weight-bold">{{ json_decode($item->features)->area }}</span>m<sup>2</sup> </p>
+                                                <p class="text-xs m-0 p-0">{{ explode(',', $item->location)[0] . ','. explode(',', $item->location)[1]. ','. explode(',', $item->location)[3]}} </p>
+                                            </div>
+                                            <div class="footer mx-3 mb-3 mt-0">
+                                                <div class="d-inline-flex float-left text-xs my-3">
+                                                    <a href="{{route('listings.show', $item->id)}}">Click here to view ></a>
+                                                </div>
+                                                <div class="d-inline-flex float-right">
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 @endforeach
                             </div>
                         </div>
@@ -204,38 +173,158 @@
     </div>
 
 </section>
-
-    {{--      <div class="row">--}}
-    {{--          @foreach ($rentdetail as $rentdetail)--}}
-    {{--              <div class="card mr-5 mb-5" style="width: 18rem">--}}
-    {{--                  <div class="img">--}}
-    {{--                      <img class="panel-img" src="{{ asset('storage/images/'.$rentdetail ->img_link) }}" alt="Rent Property Image">--}}
-    {{--                  </div>--}}
-    {{--                  <div class="card-body">--}}
-    {{--                      <h5 class="card-title">Area : {{ $rentdetail->area }} m<sup>2</sup></h5>--}}
-    {{--                      <h5 class="card-title">Price : Rs {{ $rentdetail->price }}</h5>--}}
-    {{--                      --}}{{-- <p class="card-text"> Price :{{ $rentdetail->price }}</p> --}}
-    {{--                      <a href="{{ url('rent-edit',$rentdetail->id) }}" type="submit" class="btn btn-primary">Edit</a>--}}
-    {{--                      <a href="{{url('rentdelete',$rentdetail->id)}}" type="submit" class="btn btn-danger ml-5">Delete</a>--}}
-    {{--                  </div>--}}
-
-
-    {{--              </div>--}}
-    {{--          @endforeach--}}
-    {{--      </div>--}}
-    {{--  </div>--}}
-    <!--/ Intro Single End /-->
-
-    <!--/ property Grid Star /-->
-
 @endsection
 @push('scripts')
     <script>
-        $(document).on('mouseover', '#addProperty', function () {
-            $(this).find('i').addClass('fa-bounce');
+        const location23 = $('.location').val();
+        const api_url =
+            "https://nominatim.openstreetmap.org/search.php?city="+location23+"&format=jsonv2";
+
+
+
+        $('.location').on('keyup', function () {
+            const url = "https://nominatim.openstreetmap.org/search.php?city="+$(this).val()+"&format=jsonv2";
+            $(this).next().empty();
+            getapi(url).then((data) => {
+                data.forEach(function (item) {
+                    $('.location').next().append(`<li id="listValue" data-lat="${item.lat}" data-lon="${item.lon}" data-name="${item.display_name}">${item.display_name}</li>`);
+                });
+            });
+
+
+        });
+        $(document).on('click', '#listValue', function(){
+            $('.location').val($(this).data('name'));
+            $('.location').data('lat', $(this).data('lat'));
+            $('.location').data('lon', $(this).data('lon'));
+            $('#locations').empty();
         })
-        $(document).on('mouseout', '#addProperty', function () {
-            $(this).find('i').removeClass('fa-bounce');
-        })
+
+        var map = L.map('map');
+
+
+        addMap(JSON.parse($('#listings').val()));
+        $(document).on('click', '.searchbtn', function () {
+            let latitude = $('.location').data('lat');
+            let longitude = $('.location').data('lon');
+            let price = $('.price').val();
+            let type = $('.type').val();
+            let purpose = $('.purpose').val();
+
+            $.ajax({
+                url: "{{route('buy.index')}}",
+                type: 'GET',
+                data: {
+                    'latitude' : latitude,
+                    'longitude' : longitude,
+                    'price' : price,
+                    'type' : type,
+                    'purpose' : purpose,
+                },
+                success: function(data) {
+                   $('.properties').empty();
+                   let html = '';
+                    $('#listings').remove();
+                   data.listings.forEach(function (item, index) {
+                       let photos = '';
+                       item.photo_url.forEach(function (photo) {
+                            photos += `
+                            <div class="carousel-item active">
+                                <img src="${photo}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover">
+                            </div>;`
+                       })
+                       let url = "{{route('listings.show', 'id')}}";
+                       let route = url.replace('id', item.id);
+                       html += `
+                        <div class="col-md-6">
+                            <div class="card h-100 m-0 p-0">
+                                <div class="img">
+                                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                               ${photos}
+                        </div>
+{{--                                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">--}}
+                        {{--                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                        {{--                                                        <span class="visually-hidden">Previous</span>--}}
+                        {{--                                                    </button>--}}
+                        {{--                                                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">--}}
+                        {{--                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+                        {{--                                                        <span class="visually-hidden">Next</span>--}}
+                        {{--                                                    </button>--}}
+
+                        </div>
+{{--                                                @if($item->getMedia('listings')->isNotEmpty())--}}
+                        {{--                                                    <img class="panel-img" src="{{$item->getMedia('listings')[0]->getFullUrl()}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
+                        {{--                                                @else--}}
+                        {{--                                                    <img class="panel-img" src="{{asset('img/download.png')}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
+                        {{--                                                @endif--}}
+                        </div>
+                        <div class="card-body mb-0 pb-0">
+                            <p class="text-sm font-weight-bold m-0 p-0">Rs. ${item.price}</p>
+                                                <p class="text-xs m-0 p-0">${item.location} </p>
+                                            </div>
+                                            <div class="footer mx-3 mb-3 mt-0">
+                                                <div class="d-inline-flex float-left text-xs my-3">
+                                                    <a href="${route}">Click here to view ></a>
+                                                </div>
+                                                <div class="d-inline-flex float-right">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `
+                   })
+                   $('.properties').append(html);
+                   addMap(data.listings);
+                }
+            })
+        });
+        // Defining async function
+        async function getapi(url) {
+
+            // Storing response
+            const response = await fetch(url);
+
+            // Storing data in form of JSON
+            return await response.json();
+
+
+        }
+        function addMap(properties)
+        {
+            // Remove all existing layers from the map
+            map.eachLayer(function (layer) {
+                map.removeLayer(layer);
+            });
+            var lat = ($('.location').data('lat'));
+            var lon = ($('.location').data('lon'));
+            map.setView([lat, lon], 11, {
+                "animate": true,
+                "pan": {
+                    "duration": 2
+                }
+            });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 18,
+            }).addTo(map);
+            console.log(properties);
+            properties.forEach(function (item, index) {
+                L.marker([item.latitude, item.longitude])
+                    .bindPopup(`
+                        <div class="popup-content"><h6>${item.title}</h6><p>Rs. ${item.price}</p><p>${item.location}</p></div>`, {autoClose:false, closeOnClick:false})
+                    .on('mouseover', function(e) {
+                        this.openPopup();
+                    })
+                    .on('mouseout', function(e) {
+                        this.closePopup();
+                    })
+                    .addTo(map);
+                // L.circle([item.latitude, item.longitude], 500).addTo(map);
+            });
+        }
+
+
     </script>
 @endpush

@@ -9,7 +9,7 @@ class Listing extends BaseModel
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $appends = ['photo_url', 'video_url'];
+    protected $appends = ['photo_url', 'video_url', 'features_data'];
 
 
     public function contacts()
@@ -29,5 +29,28 @@ class Listing extends BaseModel
     function getVideoUrlAttribute()
     {
         return $this->getFirstMediaUrl('video');
+    }
+    function getPhotoUrlAttribute()
+    {
+        $urls = [];
+        foreach ($this->getMedia('listings') as $media) {
+            $urls[] = $media->getUrl();
+        }
+        return $urls;
+//        return $this->getFirstMediaUrl('listings');
+    }
+
+    function getFeaturesDataAttribute()
+    {
+        $features = null;
+
+        if($this->features)
+        {
+            return json_decode($this->features, true);
+        }
+        else
+        {
+            return $features;
+        }
     }
 }

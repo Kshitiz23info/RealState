@@ -103,7 +103,7 @@
         <div class="file-section">
             <button class="btn  btn-outline-primary mr-2 " id="file-upload"><i class="fa-solid fa-upload"></i>Attach File
             </button>
-            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" style="display:none" accept="image/png, image/gif, image/jpeg">
+            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" @if(isset($item) && $item->getMedia('listings') == NULL) required @endif  accept="image/png, image/gif, image/jpeg">
         </div>
     </div>
     <span id="message"></span>
