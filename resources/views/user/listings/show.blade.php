@@ -47,6 +47,22 @@
 
                     <div class="row justify-content-between">
                         <div class="col-md-6 col-lg-5">
+                            <div class="property-price d-flex justify-content-center foo">
+                                <div class="card-header-c d-flex">
+                                    <div class="card-box-ico align-self-center ">
+                                        <h2>Price: Rs {{$item->price}}</h2>
+{{--                                        @if(isset($favorite))--}}
+                                        @if(auth()->user())
+
+                                            <div class="favorite">
+{{--                                            @if(isset($favorite))--}}
+                                            <i class="{{$favorite ? 'fa-solid fa-heart fa-xl favorite' : 'fa-regular fa-heart fa-xl favorite'}}" data-value="{{$item->id}}" style="color: #fa0000;"></i>
+{{--                                                @endif--}}
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="property-summary">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -152,7 +168,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -268,6 +283,32 @@
                 $('#form').submit();
             });
         });
+        $(document).on('click', '.favorite', function(){
+            $.ajax({
+                url: "{{route('favorite.store')}}",
+                type: 'GET',
+                data: {
+                    'favorite' : $(this).data('value')
+                },
+                success : function (data) {
+                    $(document).find('.favorite').each(function () {
+                        if($(this).data('value') == data.listing_id)
+                        {
+                            if($(this).hasClass('fa-solid'))
+                            {
+                                $(this).removeClass('fa-solid').addClass('fa-regular');
+                            }
+                            else if($(this).hasClass('fa-regular'))
+                            {
+                                $(this).addClass('fa-solid').removeClass('fa-regular');
 
+                            }
+                        }
+                    })
+                    // $(document).find('.favorite').load(location.href+" .favorite>*","");
+                }
+            })
+            // $(this).prev().submit();
+        })
     </script>
 @endpush

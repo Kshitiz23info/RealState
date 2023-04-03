@@ -163,7 +163,7 @@
                         <h2 class="title-a">Latest Properties</h2>
                     </div>
                     <div class="title-link">
-                        <a href="property-grid.html">All property
+                        <a href="{{route('properties.index')}}">All property
                             <span class="ion-ios-arrow-forward"></span>
                         </a>
                     </div>
@@ -174,13 +174,15 @@
             @foreach($item as $item)
                 <div class="carousel-item-b">
                     <div class="img-box-a">
-                        <img src={{!$item->getMedia('listings')->isEmpty()?$item->getMedia('listings')[0]->getFullUrl():''}} alt="Image" class="img-a img-fluid">
+                        <img src={{$item->photo_url ? $item->photo_url[0]:''}} alt="Image" class="img-a img-fluid">
                     </div>
                     <div class="d-flex justify-content-between align-items-center pt-2">
                         <h5 class="card-header-a">
                             <a href="{{route('listings.show', $item->id)}}">{{$item->title}}</a>
                         </h5>
                         <h4>Rs:{{$item->price}}</h4>
+
+
                     </div>
                     <div class="card-tag">
                         <span>{{json_decode($item->features)->bedroom ?:0}}</span>

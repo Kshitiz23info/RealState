@@ -10,8 +10,12 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
+<<<<<<< HEAD
                 <a class="navbar-brand text-brand" href="{{url('/')}}">Real<span class="color-b">State</span></a>
 {{--              <h3 class="w-title-a text-brand">Property.com</h3>--}}
+=======
+              <h3 class="w-title-a text-brand">Real<span class="color-b">State</span></h3>
+>>>>>>> 4665860a4101bed53857083a160917f17e5296df
             </div>
             {{-- <div class="w-body-a">
               <p class="w-text-a color-text-a">
@@ -99,42 +103,50 @@
           <nav class="nav-footer">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="#">Home</a>
+                <a href="{{url('/')}}">Home</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Buy</a>
+                <a href="{{route('buy.index')}}">Buy</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Sell</a>
+                <a href="{{route('sell.index')}}">Sell</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Rent</a>
+                <a href="{{route('listings.index')}}">Rent</a>
               </li>
+                @if(auth()->user())
               <li class="list-inline-item">
-                <a href="#">Manage Rentals</a>
+                <a href="{{route('manage-listings.index')}}">Manage Rentals</a>
               </li>
+                @endif
             </ul>
           </nav>
            <div class="socials-a">
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="#">
-                    <img src="{{asset('frontend/icons/facebook.svg')}}" class="w-100">
+
+                  <i class="fa-brands fa-facebook"></i>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                    <img src="{{asset('frontend/icons/tik.svg')}}">
+                  <i class="fa-brands fa-twitter" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                    <img src="{{asset('frontend/icons/insta.svg')}}">
+                  <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                    <img src="{{asset('frontend/icons/twitter.svg')}}">
+                  <i class="fa-brands fa-pinterest-p" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa-brands fa-dribbble" aria-hidden="true"></i>
                 </a>
               </li>
             </ul>

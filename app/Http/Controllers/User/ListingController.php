@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\BaseController;
+use App\Models\Favorite;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ListingController extends BaseController{
@@ -22,13 +24,32 @@ class ListingController extends BaseController{
      */
     public function index()
     {
-        if (auth()->user())
+        $info = $this->crudInfo();
+        $lat = 28.209538;
+        $lon = 83.991402;
+        $distance = 10;
+        $properties =  Listing::select(
+            DB::Raw("(6371 * acos( cos( radians('$lat') ) * cos( radians(latitude) ) * cos( radians(longitude) - radians('$lon') ) + sin( radians('$lat') ) * sin( radians(latitude) ) ) ) AS distance"),
+            'id',
+            'title',
+            'description',
+            'type',
+            'location',
+            'latitude',
+            'longitude',
+            'price',
+            'features',
+            'photo_url'
+
+        )
+            ->whereRaw("(6371 * acos( cos( radians('$lat') ) * cos( radians(latitude) ) * cos( radians(longitude) - radians('$lon') ) + sin( radians('$lat') ) * sin( radians(latitude) ) ) ) <= $distance");
+        if(auth()->user())
         {
-            $info['listings'] = Listing::where('user_id','!=', auth()->user()->id)->get();
+            $properties = $properties->whereNot('user_id', auth()->user()->id);
+            $info['favorites'] = Favorite::where('user_id', auth()->user()->id)->get();
         }
-        else{
-            $info['listings'] = Listing::all();
-        }
+        $properties = $properties->where('type', 'rent')->get();
+        $info['listings'] = $properties;
         return view($this->indexResource(), $info);
     }
 
@@ -115,6 +136,7 @@ class ListingController extends BaseController{
         if(auth()->user())
         {
             $info['user'] = User::findOrFail(auth()->user()->id);
+            $info['favorite'] = Favorite::where(['user_id'=>auth()->user()->id, 'listing_id'=>$id])->first();
         }
         return view($this->showResource(), $info);
     }

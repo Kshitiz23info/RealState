@@ -27,4 +27,18 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function getAllProperties()
+    {
+        if(auth()->user())
+        {
+            $info['listings'] = Listing::whereNot('user_id', auth()->user()->id)->get();
+        }
+        else
+        {
+            $info['listings'] = Listing::all();
+        }
+//        dd($info['listings']);
+        return view('properties.index', $info);
+    }
+
 }

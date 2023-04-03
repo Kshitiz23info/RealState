@@ -19,7 +19,8 @@
                         <h4><a href="{{route($route.'create')}}" ><img src="frontend\icons\addicon.png" alt="" style="width: 22px; height: 22px; hover">
                                 Add a property</a></h4>
                     </div>
-                    <div class="row">
+                    <p class="row">
+
                         @foreach ($listings as $item)
                             <div class="col-md-4 my-2">
                                 <div class="card-box-a card-shadow">
@@ -112,6 +113,7 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
                         @endforeach
+
                     </div>
                 </div>
     </section>
