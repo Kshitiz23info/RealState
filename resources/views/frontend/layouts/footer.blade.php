@@ -10,12 +10,7 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
-<<<<<<< HEAD
                 <a class="navbar-brand text-brand" href="{{url('/')}}">Real<span class="color-b">State</span></a>
-{{--              <h3 class="w-title-a text-brand">Property.com</h3>--}}
-=======
-              <h3 class="w-title-a text-brand">Real<span class="color-b">State</span></h3>
->>>>>>> 4665860a4101bed53857083a160917f17e5296df
             </div>
             {{-- <div class="w-body-a">
               <p class="w-text-a color-text-a">

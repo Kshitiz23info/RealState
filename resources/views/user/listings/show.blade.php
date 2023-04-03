@@ -49,8 +49,7 @@
                         <div class="col-md-6 col-lg-5">
                             <div class="property-price d-flex justify-content-center foo">
                                 <div class="card-header-c d-flex">
-                                    <div class="card-box-ico align-self-center ">
-                                        <h2>Price: Rs {{$item->price}}</h2>
+                                    <div class=" align-self-center ">
 {{--                                        @if(isset($favorite))--}}
                                         @if(auth()->user())
 
@@ -62,69 +61,63 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="property-summary">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="title-box-d section-t4">
-                                            <h3 class="title-d">Property Details</h3>
+                                <div class="property-summary">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="title-box-d section-t4">
+                                                <h3 class="title-d">Property Details</h3>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="summary-list">
-                                    <ul class="list">
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Location:</strong>
-                                            <span>{{$item->location?:'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Property Type:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->type ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Area:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->area ?:'N/A':'N/A'}} m
+                                    <div class="summary-list">
+                                        <ul class="list">
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Location:</strong>
+                                                <span>{{$item->location?:'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Property Type:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->type ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Area:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->area ?:'N/A':'N/A'}} m
                         <sup>2</sup>
                       </span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Beds:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->bedroom ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Baths:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->bathroom ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Livingroom:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->livingroom ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Kitchen:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->kitchen ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Parking:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->parking ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Road width:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->road_width ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Number of storeys:</strong>
-                                            <span>{{json_decode($item->features)?json_decode($item->features)->no_of_stories ?:'N/A':'N/A'}}</span>
-                                        </li>
-                                    </ul>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Beds:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->bedroom ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Baths:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->bathroom ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Livingroom:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->livingroom ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Kitchen:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->kitchen ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Parking:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->parking ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Road width:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->road_width ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Number of storeys:</strong>
+                                                <span>{{json_decode($item->features)?json_decode($item->features)->no_of_stories ?:'N/A':'N/A'}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <div class="col-md-6 col-lg-7 section-md-t3">
-                            <div class="row">
-                                <div class="col-sm-12">
-
-                                </div>
-                            </div>
 
                             <div class="row section-t3">
                                 <div class="col-sm-12">
