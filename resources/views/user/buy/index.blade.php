@@ -117,12 +117,12 @@
                     <section class="property-grid grid">
                         <div class="container">
 {{--                            {{dd($listings)}}--}}
+{{--                            <input type="hidden" value='@json($favorites)' id="as">--}}
                             <div class="row properties">
                             @foreach ($listings ?? [] as $item)
                                     <div class="col-md-6">
                                         <div class="card h-100 m-0 p-0">
-{{--                                            {{dd($item->favorites)}}--}}
-{{----}}
+
                                             <div class="img">
                                                 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                                                     <div class="carousel-inner">
@@ -132,21 +132,9 @@
                                                         </div>
                                                         @endforeach
                                                     </div>
-{{--                                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">--}}
-{{--                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-{{--                                                        <span class="visually-hidden">Previous</span>--}}
-{{--                                                    </button>--}}
-{{--                                                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">--}}
-{{--                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-{{--                                                        <span class="visually-hidden">Next</span>--}}
-{{--                                                    </button>--}}
 
                                                 </div>
-{{--                                                @if($item->getMedia('listings')->isNotEmpty())--}}
-{{--                                                    <img class="panel-img" src="{{$item->getMedia('listings')[0]->getFullUrl()}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
-{{--                                                @else--}}
-{{--                                                    <img class="panel-img" src="{{asset('img/download.png')}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
-{{--                                                @endif--}}
+
                                             </div>
                                             <div class="card-body mb-0 pb-0">
                                                 <p class="text-sm font-weight-bold m-0 p-0">Rs. {{ $item->price }}</p>
@@ -156,20 +144,16 @@
                                             <div class="footer mx-3 mb-3 mt-0">
                                                 <div class="d-inline-flex float-left text-xs my-3">
                                                     <a href="{{route('listings.show', $item->id)}}">Click here to view ></a>
-                                                    @if(isset($favorites))
-                                                        <form action="{{route('favorite.store')}}" method="GET">
-                                                            <input type="hidden" id="favHidden" name="favorite">
-                                                        </form>
-                                                    @foreach($favorites as $fav)
-                                                        @if($fav->listing_id == $item->id)
-                                                            <i class="fa-solid fa-heart fa-xl favorite" data-value="{{$item->id}}"></i>
-                                                        @endif
-                                                    @endforeach
+                                                    @if(auth()->user())
+{{--                                                        <form action="{{route('favorite.store')}}" method="GET">--}}
+{{--                                                            <input type="hidden" id="favHidden" name="favorite">--}}
+{{--                                                        </form>--}}
+                                                        <?php
+                                                        $favourite = \App\Models\Favorite::where(['user_id'=>auth()->user()->id, 'listing_id'=>$item->id])->first();
+                                                        ?>
+                                                        <i class="{{$favourite?'fa-solid fa-heart fa-xl favorite' : 'fa-regular fa-heart fa-xl favorite'}}" data-value="{{$item->id}}" style="color: #fa0000;"></i>
                                                     @endif
-{{--                                                    <i class="fa-regular fa-heart fa-xl favorite" data-value="{{$item->id}}"></i>--}}
 
-                                                    {{--                                                    {{dd($favorites)}}--}}
-{{--                                                    <i class="{{isset($favorites) ? $favorites->listing_id == $item->id ? 'fa-solid fa-heart fa-xl' : 'fa-regular fa-heart fa-xl' : null }}" style="color: #fd0808;"></i>--}}
                                                 </div>
                                                 <div class="d-inline-flex float-right">
 
@@ -190,10 +174,7 @@
 @endsection
 @push('scripts')
     <script>
-        $(document).on('click', '.favorite', function(){
-          $(this).prev().children().val($(this).data('value'));
-          $(this).prev().submit();
-        })
+
         const location23 = $('.location').val();
         const api_url =
             "https://nominatim.openstreetmap.org/search.php?city="+location23+"&format=jsonv2";
@@ -239,6 +220,11 @@
                 },
                 success: function(data) {
                    $('.properties').empty();
+                   let fav = [];
+                   data.favorites.forEach(function (item) {
+                    fav.push(item);
+                   })
+                   // console.log(fav);
                    let html = '';
                     $('#listings').remove();
                    data.listings.forEach(function (item, index) {
@@ -251,6 +237,8 @@
                        })
                        let url = "{{route('listings.show', 'id')}}";
                        let route = url.replace('id', item.id);
+                       let favs = fav.includes(item.id);
+
                        html += `
                         <div class="col-md-6">
                             <div class="card h-100 m-0 p-0">
@@ -282,6 +270,12 @@
                                             <div class="footer mx-3 mb-3 mt-0">
                                                 <div class="d-inline-flex float-left text-xs my-3">
                                                     <a href="${route}">Click here to view ></a>
+                                                    @if(auth()->user())
+                                                    {{--<form action="{{route('favorite.store')}}" method="GET">--}}
+                                                    {{--        <input type="hidden" id="favHidden" name="favorite">--}}
+                                                    {{--</form>--}}
+                                                     <i class="${favs == true ?'fa-solid fa-heart fa-xl favorite ' : 'fa-regular fa-heart fa-xl favorite'}" data-value="${item.id}" style="color: #fa0000;"></i>
+                                                    @endif
                                                 </div>
                                                 <div class="d-inline-flex float-right">
 
@@ -293,9 +287,42 @@
                    })
                    $('.properties').append(html);
                    addMap(data.listings);
+
+
                 }
             })
+            .done(function(data){
+
+            });
         });
+
+        $('.properties').on('click', '.favorite', function(){
+            $.ajax({
+                url: "{{route('favorite.store')}}",
+                type: 'GET',
+                data: {
+                    'favorite' : $(this).data('value')
+                },
+                success : function (data) {
+                    $(document).find('.favorite').each(function () {
+                        if($(this).data('value') == data.listing_id)
+                        {
+                            if($(this).hasClass('fa-solid'))
+                            {
+                                $(this).removeClass('fa-solid').addClass('fa-regular');
+                            }
+                            else if($(this).hasClass('fa-regular'))
+                            {
+                                $(this).addClass('fa-solid').removeClass('fa-regular');
+
+                            }
+                        }
+                    })
+                    // $(document).find('.favorite').load(location.href+" .favorite>*","");
+                }
+            })
+            // $(this).prev().submit();
+        })
         // Defining async function
         async function getapi(url) {
 

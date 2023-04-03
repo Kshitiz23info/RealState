@@ -24,7 +24,12 @@ class FavoriteController extends Controller
             $fav = new Favorite(['user_id'=>$userId,'listing_id'=>$request->favorite]);
             $fav->save();
         }
-        return redirect()->back();
+        $data = [
+            'status' => true,
+            'listing_id' => $request->favorite,
+        ];
+        return $data;
+//        return redirect()->back();
     }
 
     /**

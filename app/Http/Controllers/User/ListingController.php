@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\BaseController;
+use App\Models\Favorite;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -115,6 +116,7 @@ class ListingController extends BaseController{
         if(auth()->user())
         {
             $info['user'] = User::findOrFail(auth()->user()->id);
+            $info['favorite'] = Favorite::where(['user_id'=>auth()->user()->id, 'listing_id'=>$id])->first();
         }
         return view($this->showResource(), $info);
     }

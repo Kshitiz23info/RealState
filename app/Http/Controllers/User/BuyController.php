@@ -61,6 +61,7 @@ class BuyController extends BaseController
 //            dd($request->all());
             $latitude = $request->latitude;
             $longitude = $request->longitude;
+            $favorites = [];
 //            $distance = 10;
             $listings = Listing::select(
                     DB::Raw("(6371 * acos( cos( radians('$latitude') ) * cos( radians(latitude) ) * cos( radians(longitude) - radians('$longitude') ) + sin( radians('$latitude') ) * sin( radians(latitude) ) ) ) AS distance"),
@@ -80,6 +81,7 @@ class BuyController extends BaseController
             if(auth()->user())
             {
                 $listings = $listings->whereNot('user_id', auth()->user()->id);
+                $favorites = Favorite::where('user_id', auth()->user()->id)->pluck('listing_id');
             }
             if($request->type)
             {
@@ -95,7 +97,8 @@ class BuyController extends BaseController
                 ->get();
             $data = [
                 'status' => true,
-                'listings' => $listings
+                'listings' => $listings,
+                'favorites' => $favorites,
             ];
             return $data;
         }
