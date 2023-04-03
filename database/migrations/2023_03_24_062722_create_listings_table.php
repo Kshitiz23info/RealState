@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->longText('description')->nullable();
             $table->double('price')->nullable();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->longText('photo_url')->nullable();
             $table->string('video_url')->nullable();
             $table->longText('features')->nullable();
+            $table->string('type')->comment('sale,rent')->default('sale');
             $table->timestamps();
         });
     }

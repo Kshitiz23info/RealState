@@ -9,12 +9,12 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BuyController extends BaseController
+class SearchController extends BaseController
 {
     public function __construct()
     {
-        $this->title = 'Buy';
-        $this->route = "buy.";
+        $this->title = 'Search';
+        $this->route = "search.";
         $this->resources = "user.buy.";
         parent::__construct();
     }

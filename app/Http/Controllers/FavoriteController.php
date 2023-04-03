@@ -12,7 +12,30 @@ class FavoriteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
+    {
+        $info['favorites'] = Favorite::where('user_id', auth()->user()->id)->with('listing')->orderBy('id','desc')->get();
+        $info['route'] = 'listings.';
+        return view('user.favorites.index',$info);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $userId = auth()->user()->id;
         $favorite = Favorite::where(['user_id' => $userId, 'listing_id' =>  $request->favorite])->first();
@@ -29,27 +52,6 @@ class FavoriteController extends Controller
             'listing_id' => $request->favorite,
         ];
         return $data;
-//        return redirect()->back();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
     }
 
     /**

@@ -163,7 +163,7 @@
                         <h2 class="title-a">Latest Properties</h2>
                     </div>
                     <div class="title-link">
-                        <a href="property-grid.html">All property
+                        <a href="{{route('properties.index')}}">All property
                             <span class="ion-ios-arrow-forward"></span>
                         </a>
                     </div>
@@ -176,7 +176,7 @@
                 <div class="card-box-a card-shadow" style="position: relative">
                     <h4><span class="badge text-bg-warning text-white text-lg" style="position: absolute;">For {{ ucfirst(trans($item->type))}}</span></h4>
                         <div class="img-box-a">
-                        <img src={{!$item->getMedia('listings')->isEmpty()?$item->getMedia('listings')[0]->getFullUrl():''}} alt="Image" class="img-a img-fluid">
+                        <img src="{{$item->photo_url ? $item->photo_url[0]:''}}" alt="Image" class="img-a img-fluid" style="object-fit: cover">
                     </div>
                     <div class="card-overlay">
                         <div class="card-overlay-a-content">
@@ -210,10 +210,7 @@
                                         <h4 class="card-info-title">Baths</h4>
                                         <span>{{json_decode($item->features)->bathroom ?:0}}</span>
                                     </li>
-                                    <li>
-                                        <h4 class="card-info-title">Garages</h4>
-                                        <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>

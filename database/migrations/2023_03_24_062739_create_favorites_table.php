@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('listing_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('listing_id')->references('id')->on('listings')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
