@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width:768px) {
-    
+
     .contact-section {
 
         padding-top:10rem;
@@ -25,7 +25,7 @@
 }
 
 .contact-c {
-    
+
     color: #000000;
 
 }
@@ -43,8 +43,8 @@
 }
 .contact-form_input{
 
-    border-radius: 0;
-    padding: 1.2rem 1rem;
+    border-radius: 5px;
+    padding: 0.5rem;
     border:1px solid rgba(149, 157, 165, 0.2);
 
 }
@@ -63,7 +63,7 @@ input:focus, textarea:focus {
     outline: none;
 
 }
-  
+
 
 .contact-form_property {
 

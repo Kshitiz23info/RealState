@@ -12,7 +12,7 @@
               <div class="row">
                 <div class="col-lg-8">
                   <div class="intro-body">
-                    <h1 class="intro-title mb-4">Discover Your  
+                    <h1 class="intro-title mb-4">Discover Your
                     <span class="color-b">Perfect property</span>
                     <br>With Us</h1>
                   </div>
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
         <div class="carousel-item-a intro-item bg-image" style="background-image: url({{ asset('frontend/img/slide-2.jpg') }})">
         <div class="overlay overlay-a"></div>
@@ -31,7 +31,7 @@
               <div class="row">
                 <div class="col-lg-8">
                   <div class="intro-body">
-                    <h1 class="intro-title mb-4">Your 
+                    <h1 class="intro-title mb-4">Your
                       <span class="color-b">Next Home</span>
                       <br>Is Just A Click Away </h1>
                     <p class="intro-subtitle intro-price">
@@ -52,7 +52,7 @@
                 <div class="col-lg-8">
                   <div class="intro-body">
                     <p class="intro-title-top">
-                    <h1 class="intro-title mb-4">The Best  
+                    <h1 class="intro-title mb-4">The Best
                       <span class="color-b">Properties</span>
                       <br>All In One Place</h1>
                     <p class="intro-subtitle intro-price">
@@ -68,88 +68,90 @@
   </div>
   <!--/ Carousel end /-->
 
+
+
   <!--/ Services Star /-->
-  <section class="section-services section-t8">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
-              <h2 class="title-a">Our Services</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card-box-c foo">
-            <div class="card-header-c d-flex">
-              <div class="card-box-ico">
-                <span class="fa fa-home"></span>
-              </div>
-              <div class="card-title-c align-self-center">
-                <h2 class="title-c">Buy</h2>
-              </div>
-            </div>
-            <div class="card-body-c">
-              <p class="content-c">
-                Find your dream home on our platform. Browse a wide variety of properties and filter your search based on your preferences. Contact the seller directly and close the deal without any broker fees.
-              </p>
-            </div>
-            <div class="card-footer-c">
-              {{-- <a href="#" class="link-c link-icon">Read more
-                <span class="ion-ios-arrow-forward"></span>
-              </a> --}}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-c foo">
-            <div class="card-header-c d-flex">
-              <div class="card-box-ico">
-                <span class="fa fa-usd"></span>
-              </div>
-              <div class="card-title-c align-self-center">
-                <h2 class="title-c">Rent</h2>
-              </div>
-            </div>
-            <div class="card-body-c">
-              <p class="content-c">
-                Rent out your property on our platform and connect with potential tenants directly. Manage your rental property on your own terms, from advertising your property to screening tenants. Our platform makes it easy to find the right tenant for your property.
-              </p>
-            </div>
-            <div class="card-footer-c">
-              {{-- <a href="#" class="link-c link-icon">Read more
-                <span class="ion-ios-arrow-forward"></span>
-              </a> --}}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-c foo">
-            <div class="card-header-c d-flex">
-              <div class="card-box-ico">
-                <span class="fa fa-home"></span>
-              </div>
-              <div class="card-title-c align-self-center">
-                <h2 class="title-c">Sell</h2>
-              </div>
-            </div>
-            <div class="card-body-c">
-              <p class="content-c">
-                List your property on our platform and reach thousands of potential buyers. Our broker-free service allows you to sell your home at the price you want, without any hidden fees. Create your listing, upload pictures and start selling today.
-              </p>
-            </div>
-            <div class="card-footer-c">
-              {{-- <a href="#" class="link-c link-icon">Read more
-                <span class="ion-ios-arrow-forward"></span>
-              </a> --}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+{{--  <section class="section-services section-t8">--}}
+{{--    <div class="container">--}}
+{{--      <div class="row">--}}
+{{--        <div class="col-md-12">--}}
+{{--          <div class="title-wrap d-flex justify-content-between">--}}
+{{--            <div class="title-box">--}}
+{{--              <h2 class="title-a">Our Services</h2>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="row">--}}
+{{--        <div class="col-md-4">--}}
+{{--          <div class="card-box-c foo">--}}
+{{--            <div class="card-header-c ">--}}
+{{--              <div class="card-box-ico">--}}
+{{--                <span class="fa fa-home"></span>--}}
+{{--              </div>--}}
+{{--              <div class="card-title-c align-self-center">--}}
+{{--                <h2 class="title-c">Buy</h2>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--            <div class="card-body-c">--}}
+{{--              <p class="content-c">--}}
+{{--                Find your dream home on our platform. Browse a wide variety of properties and filter your search based on your preferences. Contact the seller directly and close the deal without any broker fees.--}}
+{{--              </p>--}}
+{{--            </div>--}}
+{{--            <div class="card-footer-c">--}}
+{{--              --}}{{-- <a href="#" class="link-c link-icon">Read more--}}
+{{--                <span class="ion-ios-arrow-forward"></span>--}}
+{{--              </a> --}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-md-4">--}}
+{{--          <div class="card-box-c foo">--}}
+{{--            <div class="card-header-c ">--}}
+{{--              <div class="card-box-ico">--}}
+{{--                <span class="fa fa-usd"></span>--}}
+{{--              </div>--}}
+{{--              <div class="card-title-c align-self-center">--}}
+{{--                <h2 class="title-c">Rent</h2>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--            <div class="card-body-c">--}}
+{{--              <p class="content-c">--}}
+{{--                Rent out your property on our platform and connect with potential tenants directly. Manage your rental property on your own terms, from advertising your property to screening tenants. Our platform makes it easy to find the right tenant for your property.--}}
+{{--              </p>--}}
+{{--            </div>--}}
+{{--            <div class="card-footer-c">--}}
+{{--              --}}{{-- <a href="#" class="link-c link-icon">Read more--}}
+{{--                <span class="ion-ios-arrow-forward"></span>--}}
+{{--              </a> --}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-md-4">--}}
+{{--          <div class="card-box-c foo">--}}
+{{--            <div class="card-header-c ">--}}
+{{--              <div class="card-box-ico">--}}
+{{--                <span class="fa fa-home"></span>--}}
+{{--              </div>--}}
+{{--              <div class="card-title-c align-self-center">--}}
+{{--                <h2 class="title-c">Sell</h2>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--            <div class="card-body-c">--}}
+{{--              <p class="content-c">--}}
+{{--                List your property on our platform and reach thousands of potential buyers. Our broker-free service allows you to sell your home at the price you want, without any hidden fees. Create your listing, upload pictures and start selling today.--}}
+{{--              </p>--}}
+{{--            </div>--}}
+{{--            <div class="card-footer-c">--}}
+{{--              --}}{{-- <a href="#" class="link-c link-icon">Read more--}}
+{{--                <span class="ion-ios-arrow-forward"></span>--}}
+{{--              </a> --}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+{{--  </section>--}}
   <!--/ Services End /-->
 
   <!--/ property Star /-->

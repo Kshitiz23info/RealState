@@ -72,7 +72,7 @@ a:hover {
 
 .text-brand {
     color: #000000;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
 }
 
@@ -139,7 +139,7 @@ a:hover {
 
 .list-a li {
     position: relative;
-    width: 50%;
+    width: 100%;
     float: left;
     padding-left: 25px;
     padding-right: 5px;
@@ -430,7 +430,7 @@ a:hover {
 /*------/ Socials /------*/
 
 .socials-a .list-inline-item:not(:last-child) {
-    margin-right: 25px;
+    margin-right: 10px;
 }
 
 
@@ -516,8 +516,10 @@ a:hover {
 .navbar-default {
     transition: all 0.5s ease-in-out;
     background-color: #ffffff;
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #939393;
+    font-weight: 500;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
@@ -542,15 +544,14 @@ a:hover {
 .navbar-default.navbar-reduce .nav-item {
     position: relative;
     padding-right: 10px;
-    padding-bottom: 8px;
     margin-left: 0;
 }
 
 .navbar-default.navbar-trans .nav-link,
 .navbar-default.navbar-reduce .nav-link {
-    font-size: 1.1rem;
-    color: #000000;
-    font-weight: 600;
+    font-size: 1rem;
+    color:#939393;
+    font-weight: 500;
     letter-spacing: 0.03em;
     transition: all 0.1s ease-in-out;
     position: relative;
@@ -620,12 +621,12 @@ a:hover {
 
 .navbar-default.navbar-reduce {
     transition: all 0.5s ease-in-out;
-    padding-top: 19px;
-    padding-bottom: 19px;
+    padding-top:10px;
+    padding-bottom: 10px;
 }
 
 .navbar-default.navbar-reduce .nav-link {
-    color: #000000;
+    color: #939393;
 }
 
 .navbar-default.navbar-reduce .nav-link:before {
@@ -951,9 +952,6 @@ a:hover {
 
 /*------/ Intro Single /------*/
 
-.intro-single {
-    padding: 9rem 0 1rem;
-}
 
 .intro-single .title-single-box {
     padding: 1rem 0 1rem 2rem;
@@ -1092,22 +1090,22 @@ label {
     bottom: 0px;
     z-index: 2;
 }
-.img-box-a{
-    width: 100%;
-    height: 450px;
-}
-.card-header-a {
-    padding: 0 1rem;
-}
+/*.img-box-a{*/
+/*    width: 100%;*/
+/*    height: 450px;*/
+/*}*/
+/*.card-header-a {*/
+/*    padding: 0 1rem;*/
+/*}*/
 
 .card-header-a .card-title-a {
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 0;
     padding-bottom: 0.7rem;
 }
 
 .card-header-a .card-title-a a {
-    color: #ffffff;
+    color: #000000;
     font-size:25px;
     text-decoration: none;
 }
@@ -1123,7 +1121,7 @@ label {
 }
 
 .price-a {
-    color: #ffffff;
+    color: #000000;
     padding: 0.6rem 0.8rem;
     border: 2px solid #2eca6a;
     border-radius: 50px;
@@ -1356,12 +1354,12 @@ label {
     position: relative;
 }
 
-.card-header-c {
-    padding: 0 1rem 1rem 1rem;
+.card-title-c {
+    padding: 1rem 0 0 0;
 }
 
-.card-body-c {
-    padding: 0.5rem 0.5rem 0 0.5rem;
+.card-body-c p{
+   font-size: 0.9rem;
 }
 
 .card-footer-c {
@@ -1369,24 +1367,25 @@ label {
 }
 
 .card-box-ico {
-    padding: 2rem 3rem;
-    border: 5px solid #2eca6a;
+   height: 90px;
+    width: 90px;
+    border: 2px solid #2eca6a;
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* .card-box-icon {
-    padding: 2.5rem 1.2rem;
-    border: 5px solid #2eca6a;
-} */
-
 .card-box-ico span {
-    font-size: 4rem;
-    color: #000000;
+    font-size: 2.8rem;
+    text-align: center;
+    color: #2ECA6A;
 }
 
 .title-c {
-    font-size: 2.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-left: 40px;
 }
 
 /*======================================
@@ -1746,7 +1745,7 @@ footer .credits {
 .btn.btn-b-n {
     background-color: #2eca6a;
     color: #ffffff;
-    border-radius: 0;
+    border-radius: 5px;
 }
 
 .btn.btn-b-n:hover {
@@ -1910,7 +1909,7 @@ footer .credits {
     }
 
     .title-c {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
     }
 
     .card-box-d .card-overlay-hover {
@@ -1966,9 +1965,7 @@ footer .credits {
         font-size: 18px;
     }
 
-    .list-a li {
-        width: 33.333%;
-    }
+
 
     .intro .intro-title-top {
         font-size: 1rem;
@@ -2021,7 +2018,7 @@ footer .credits {
     }
 
     .title-c {
-        font-size: 2.5rem;
+        font-size: 1.2rem;
     }
 
     .card-box-d .card-overlay-hover {
@@ -2167,3 +2164,46 @@ footer .credits {
     padding: 20px;
     color: #26a356;
   }
+
+
+
+
+
+
+/*Additional Css*/
+.btn-primary{
+    background: #2ECA6A;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #2ECA6A;
+}
+.btn-primary:hover{
+    background: #ffffff;
+    color: #2ECA6A;
+    border-radius: 5px;
+    border: 1px solid #2ECA6A;
+}
+.btn-secondary{
+    background: #ffffff;
+    color: #2ECA6A;
+    border-radius: 5px;
+    border: 1px solid #2ECA6A;
+}
+.btn-secondary:hover{
+    background: #2ECA6A;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #2ECA6A;
+}
+.card-tag{
+    background: #2ECA6A;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    width: 75%;
+    text-align: center;
+    border-radius: 5px;
+}
+.user-details ul li{
+   list-style-type: none;
+}

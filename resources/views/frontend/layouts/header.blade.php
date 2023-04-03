@@ -154,7 +154,7 @@
         <span class="fa fa-search" aria-hidden="true"></span>
       </button>
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav m-auto">
             <li class="nav-item">
                 <a class="nav-link {{Request::is('/') ? 'active' : ''}}" href="{{url('/')}}">Home</a>
             </li>
@@ -176,22 +176,22 @@
             </li>
             @endif
 
-          {{-- <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link" href="#">Account</a>
-          </li> --}}
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <!-- Authentication Links -->
           @guest
               @if (Route::has('login'))
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                      <a class=" btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
                   </li>
               @endif
 
               @if (Route::has('register'))
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                      <a class=" btn btn-secondary" href="{{ route('register') }}">{{ __('Register') }}</a>
                   </li>
               @endif
           @else
