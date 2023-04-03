@@ -3,34 +3,29 @@
 
     <!--/ Intro Single star /-->
     <section class="intro-single">
+        <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+            @foreach($item->getMedia('listings') ?? [] as $image)
+
+                <div class="carousel-item-b text-center" style="position: relative;">
+                    <img src="{{ $image->getFullUrl() }}" alt="Property Image"
+                         style="height: 80vh; width:100%; object-fit:cover">
+                    @if($item->title || $item->location)
+                    <div class="" style="position: absolute;top: 50%;left: 30%;">
+                       <h1 class="title-single">{{$item->Title}}</h1>
+                       <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>
+                    </div>
+                    @endif
+                </div>
+            @endforeach
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-8">
-                        @if($item->title || $item->location)
-
                             <div class="title-single-box">
-                                <h1 class="title-single">{{$item->Title}}</h1>
-                                <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>
-                                {{-- <span class="color-text-a">{{$item->city}}</span> --}}
+                                <h2>Price: Rs {{$item->price}}</h2>
                             </div>
-                    @endif
+                </div>
 
-                </div>
-                <div class="col-md-12 col-lg-4">
-                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="property-grid.html">Properties</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                {{--                {{$item->tole}}--}}
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
             </div>
         </div>
     </section>
@@ -39,26 +34,19 @@
     <!--/ Property Single Star /-->
     <section class="property-single nav-arrow-b">
         <div class="container">
-            <div class="row">
+            <div class="row mt-3">
+                <div class="title-box-d">
+                    <h3 class="title-d ">Property Description</h3>
+                </div>
+                <div class="property-description">
+                    <p class="description color-text-a">
+                        {{$item->description?:'N/A'}}
+                    </p>
+                </div>
                 <div class="col-sm-12">
-                    <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-                        @foreach($item->getMedia('listings') ?? [] as $image)
 
-                            <div class="carousel-item-b text-center">
-                                <img src="{{ $image->getFullUrl() }}" alt="Property Image"
-                                     style="height: 500px; width:400px; object-fit:cover">
-                            </div>
-                        @endforeach
-                    </div>
                     <div class="row justify-content-between">
-                        <div class="col-md-5 col-lg-5">
-                            <div class="property-price d-flex justify-content-center foo">
-                                <div class="card-header-c d-flex">
-                                    <div class="card-box-ico align-self-center ">
-                                        <h2>Price: Rs {{$item->price}}</h2>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-6 col-lg-5">
                             <div class="property-summary">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -115,19 +103,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7 col-lg-7 section-md-t3">
+                        <div class="col-md-6 col-lg-7 section-md-t3">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="title-box-d">
-                                        <h3 class="title-d">Property Description</h3>
-                                    </div>
+
                                 </div>
                             </div>
-                            <div class="property-description">
-                                <p class="description color-text-a">
-                                    {{$item->description?:'N/A'}}
-                                </p>
-                            </div>
+
                             <div class="row section-t3">
                                 <div class="col-sm-12">
                                     <div class="title-box-d">
@@ -136,7 +118,7 @@
                                 </div>
                             </div>
                             <div class="amenities-list color-text-a">
-                                <ul class="list-a">
+                                <ul class="w-100 d-flex flex-column list-a">
                                     <li><strong>Location: </strong>{{$item->location?:'N/A'}}</li>
                                     <li><strong>Latitude: </strong>{{$item->latitude?:'N/A'}}</li>
                                     <li><strong>Longitude: </strong>{{$item->longitude?:'N/A'}}</li>
@@ -157,14 +139,14 @@
                             <div class="color-text-a">
                                 <div class="card w-50 my-3" style="height:100% ">
                                     <div class="row">
-                                        <div class="col-md-4 pt-4 pl-4">
+                                        <div class="col-md-4 d-flex justify-content-center align-items-center">
                                             <img src="{{asset('/img/user.png')}}" alt="Image" width="80%">
                                         </div>
-                                        <div class="col-md-8 my-3">
-                                            <ul>
-                                                <li>{{$item->user->name}}</li>
-                                                <li>{{$item->user->phone}}</li>
-                                                <li>{{$item->user->email}}</li>
+                                        <div class="col-md-8 my-3 user-details d-flex justify-content-center align-items-center">
+                                            <ul style="margin: 0">
+                                                <li><img src="{{asset('frontend/icons/user.svg')}}" class="w-auto"> {{$item->user->name}}</li>
+                                                <li><img src="{{asset('frontend/icons/phone.svg')}}" class="w-auto"> {{$item->user->phone}}</li>
+                                                <li><img src="{{asset('frontend/icons/mail.svg')}}" class="w-auto"> {{$item->user->email}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -174,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 offset-md-1">
+                <div class="col-md-8">
                     <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
 
                         <li class="nav-item">
@@ -224,7 +206,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 offset-md-1">
+                <div class="col-md-4 ">
                     <div class="row section-t3">
                         <div class="col-sm-12">
                             <div class="title-box-d">
@@ -240,40 +222,32 @@
                                 <input type="hidden" value="{{$item->user_id}}" name="property_owner">
                                 <div class="form-group row mb-4">
                                     <div class="contact-form_input_wrapper col-12 col-md-6 mb-4 mb-md-0">
-                                        <label for="name" class="input_label">Name <span
-                                                class="text-danger">*</span></label>
+
                                         <input type="text" id="name" name="name" autocomplete="off"
-                                               class=" contact-form_input w-100" placeholder="Sonam Hitang"
+                                               class=" contact-form_input w-100" placeholder="Name"
                                                value="{{isset($user)?$user->name:null}}" required/>
                                     </div>
                                     <div class="contact-form_input_wrapper col-12 col-md-6">
-                                        <label for="email" class="input_label">Email <span class="text-danger">*</span></label>
                                         <input type="email" id="email" name="email" autocomplete="off"
-                                               class=" contact-form_input w-100" placeholder="sonam@gmail.com"
+                                               class=" contact-form_input w-100" placeholder="Email"
                                                value="{{isset($user)?$user->email:null}}" required/>
                                     </div>
 
                                 </div>
 
                                 <div class="contact-form_input_wrapper mb-4">
-                                    <label for="phone" class="input_label">Phone <span
-                                            class="text-danger">*</span></label>
                                     <input type="number" id="phone" name="phone" autocomplete="off"
-                                           class=" contact-form_input w-100" placeholder="9806657898"
+                                           class=" contact-form_input w-100" placeholder="Phone"
                                            value="{{isset($user)?$user->phone:null}}" required/>
                                 </div>
                                 <div class="form-group row mb-4">
                                     <div class="contact-form_input_wrapper  col-lg-12 col-md-7 mb-4 mb-md-0">
-                                        <label for="message" class="input_label">Message</label>
-                                        <textarea id="message" autocomplete="off" name="message"
+                                        <textarea id="message" autocomplete="off" name="message" rows="2"
                                                   class=" contact-form_textarea w-100" placeholder="I would like to...">
-
-                                    </textarea>
+                                        </textarea>
                                     </div>
                                 </div>
-
-
-                                <button class="btn send-button w-100 p-3 mt-md-4" id="submit_btn" type="submit">
+                                <button class="btn send-button w-100 p-3" id="submit_btn" type="submit">
                                     Send
                                 </button>
 

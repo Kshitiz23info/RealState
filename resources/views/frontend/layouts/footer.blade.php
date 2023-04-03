@@ -10,7 +10,8 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
-              <h3 class="w-title-a text-brand">Property.com</h3>
+                <a class="navbar-brand text-brand" href="{{url('/')}}">Real<span class="color-b">State</span></a>
+{{--              <h3 class="w-title-a text-brand">Property.com</h3>--}}
             </div>
             {{-- <div class="w-body-a">
               <p class="w-text-a color-text-a">
@@ -21,9 +22,9 @@
             <div class="w-footer-a">
               <ul class="list-unstyled">
                 <li class="color-a">
-                  <span class="color-text-a">Phone .</span> contact@example.com</li>
+                  <span class="color-text-a">Phone :</span> contact@example.com</li>
                 <li class="color-a">
-                  <span class="color-text-a">Email .</span> +977 986945234</li>
+                  <span class="color-text-a">Email :</span> +977 986945234</li>
               </ul>
             </div>
           </div>
@@ -118,27 +119,22 @@
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="#">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <img src="{{asset('frontend/icons/facebook.svg')}}" class="w-100">
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                    <img src="{{asset('frontend/icons/tik.svg')}}">
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                    <img src="{{asset('frontend/icons/insta.svg')}}">
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="#">
-                  <i class="fa fa-pinterest-p" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-dribbble" aria-hidden="true"></i>
+                    <img src="{{asset('frontend/icons/twitter.svg')}}">
                 </a>
               </li>
             </ul>

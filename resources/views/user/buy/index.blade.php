@@ -57,7 +57,7 @@
 
 <section class="buy_section">
     <!--/ Intro Single star /-->
-    <section class="intro-single" style="padding: 4rem; ">
+    <section class="intro-single" style="padding: 2.2rem; ">
 
     </section>
     <div>
