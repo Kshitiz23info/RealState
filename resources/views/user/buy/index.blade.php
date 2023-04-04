@@ -14,26 +14,39 @@
         }
 
         /* align icon */
-        .left-addon .fas  { left:  0px;}
-        .right-addon .fas { right: 0px;}
+        .left-addon .fas {
+            left: 0px;
+        }
+
+        .right-addon .fas {
+            right: 0px;
+        }
 
         /* add padding  */
-        .left-addon input  { padding-left:  30px; }
-        .right-addon input { padding-right: 30px; }
+        .left-addon input {
+            padding-left: 30px;
+        }
 
-        .buy_section   {
+        .right-addon input {
+            padding-right: 30px;
+        }
 
-            height: 100vh; overflow:hidden;
+        .buy_section {
+
+            height: 100vh;
+            overflow: hidden;
 
         }
 
         .property-list_section {
 
-            overflow-x: hidden; overflow-y:scroll; height:70vh;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: 70vh;
 
         }
 
-        @media screen and (max-width:756px) {
+        @media screen and (max-width: 756px) {
 
             .buy_section {
 
@@ -43,8 +56,8 @@
 
             .property-list_section {
 
-                overflow:auto ;
-                height:auto;
+                overflow: auto;
+                height: auto;
 
             }
 
@@ -64,10 +77,9 @@
 @endpush
 
 @section('content')
-
     <section class="buy_section">
         <!--/ Intro Single star /-->
-        <section class="intro-single" style="padding: 4rem; ">
+        <section class="intro-single" style="padding: 2.2rem; ">
 
         </section>
         <div>
@@ -76,7 +88,9 @@
                     <form class="rent-filter">
                         <div class="form-group">
                             <div class="input-group inner-addon right-addon form-floating">
-                                <input type="text" class="form-control location" placeholder="Location" list="locations" value="Pokhara, Kaski, Gandaki Pradesh, Nepal" id="floatingInput" data-lat="28.209538" data-lon="83.991402">
+                                <input type="text" class="form-control location" placeholder="Location" list="locations"
+                                       value="Pokhara, Kaski, Gandaki Pradesh, Nepal" id="floatingInput"
+                                       data-lat="28.209538" data-lon="83.991402" style="position:relative;">
                                 <ul id="locations">
                                 </ul>
                                 <span><i class="fas fa-search"></i></span>
@@ -84,16 +98,17 @@
                             </div>
                         </div>
                         <div class="form-group form-floating">
-                            <select class="form-control form-select custom-select type"  id="floatingSelect">
+                            <select class="form-control form-select custom-select type" id="floatingSelect">
                                 <option value="{{null}}">All</option>
                                 <option value="Home">House</option>
                                 <option value="Land">Land</option>
                             </select>
                             <label for="floatingSelect">Type</label>
+
                         </div>
 
                         <div class="form-group form-floating">
-                            <select class="form-control custom-select form-select purpose"  id="floatingSelect">
+                            <select class="form-control custom-select form-select purpose" id="floatingSelect">
                                 <option value="sale">For Sale</option>
                                 <option value="rent">For Rent</option>
                             </select>
@@ -101,7 +116,7 @@
                         </div>
 
                         <div class="form-group form-floating">
-                            <select class="form-control custom-select form-select price"  id="floatingSelect">
+                            <select class="form-control custom-select form-select price" id="floatingSelect">
                                 <option value="">All</option>
                                 <option>50000-60000</option>
                                 <option>5000-100000</option>
@@ -116,7 +131,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="card" >
+                        <div class="card">
                             <div style="z-index: 1">
                                 <input type="hidden" value='@json($listings)' id="listings">
                                 <div id="map" style="height: 60vh;"></div>
@@ -131,15 +146,18 @@
                                 <div class="row properties">
                                     @if($listings->isNotEmpty())
                                         @foreach ($listings ?? [] as $item)
-                                            <div class="col-md-6 mb-3">
+                                            <div class="col-md-6">
                                                 <div class="card h-100 m-0 p-0">
 
                                                     <div class="img">
-                                                        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                                                        <div id="myCarousel" class="carousel slide"
+                                                             data-bs-ride="carousel">
                                                             <div class="carousel-inner">
                                                                 @foreach($item->photo_url ?? [] as $photo)
                                                                     <div class="carousel-item active">
-                                                                        <img src="{{$photo }}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover">
+                                                                        <img src="{{$photo }}" class="d-block w-100"
+                                                                             alt="..."
+                                                                             style="height: 150px; object-fit: cover">
                                                                     </div>
                                                                 @endforeach
                                                             </div>
@@ -148,21 +166,31 @@
 
                                                     </div>
                                                     <div class="card-body mb-0 pb-0">
-                                                        <p class="text-sm font-weight-bold m-0 p-0">Rs. {{ $item->price }}</p>
-                                                        <p class="text-xs m-0 p-0"><span class="font-weight-bold"> {{ json_decode($item->features)->bedroom }}</span> beds | <span class="font-weight-bold">{{ json_decode($item->features)->bathroom }}</span>baths | <span class="font-weight-bold">{{ json_decode($item->features)->area }}</span>m<sup>2</sup> </p>
+                                                        <p class="text-sm font-weight-bold m-0 p-0">
+                                                            Rs. {{ $item->price }}</p>
+                                                        <p class="text-xs m-0 p-0"><span
+                                                                class="font-weight-bold"> {{ json_decode($item->features)->bedroom }}</span>
+                                                            beds | <span
+                                                                class="font-weight-bold">{{ json_decode($item->features)->bathroom }}</span>baths
+                                                            | <span
+                                                                class="font-weight-bold">{{ json_decode($item->features)->area }}</span>m<sup>2</sup>
+                                                        </p>
                                                         <p class="text-xs m-0 p-0">{{ explode(',', $item->location)[0] . ','. explode(',', $item->location)[1]. ','. explode(',', $item->location)[3]}} </p>
                                                     </div>
                                                     <div class="footer mx-3 mb-3 mt-0">
                                                         <div class="d-inline-flex float-left text-xs my-3">
-                                                            <a href="{{route('listings.show', $item->id)}}">Click here to view ></a>
+                                                            <a href="{{route('listings.show', $item->id)}}">Click here
+                                                                to view ></a>
                                                             @if(auth()->user())
-                                                                {{--                                                        <form action="{{route('favorite.store')}}" method="GET">--}}
-                                                                {{--                                                            <input type="hidden" id="favHidden" name="favorite">--}}
-                                                                {{--                                                        </form>--}}
+                                                                <form action="{{route('favorite.store')}}" method="GET">
+                                                                    <input type="hidden" id="favHidden" name="favorite">
+                                                                </form>
                                                                 <?php
-                                                                $favourite = \App\Models\Favorite::where(['user_id'=>auth()->user()->id, 'listing_id'=>$item->id])->first();
+                                                                $favourite = \App\Models\Favorite::where(['user_id' => auth()->user()->id, 'listing_id' => $item->id])->first();
                                                                 ?>
-                                                                <i class="{{$favourite?'fa-solid fa-heart fa-xl favorite' : 'fa-regular fa-heart fa-xl favorite'}}" data-value="{{$item->id}}" style="color: #fa0000;"></i>
+                                                                <i class="{{$favourite?'fa-solid fa-heart fa-xl favorite' : 'fa-regular fa-heart fa-xl favorite'}}"
+                                                                   data-value="{{$item->id}}"
+                                                                   style="color: #fa0000;"></i>
                                                             @endif
 
                                                         </div>
@@ -174,8 +202,8 @@
                                             </div>
                                         @endforeach
                                     @else
-                                        <div class="alert alert-info">
-                                            <h5>No data is available for this search</h5>
+                                        <div>
+                                            <h4>No data is available for this search</h4>
                                         </div>
                                     @endif
                                 </div>
@@ -190,13 +218,12 @@
 @endsection
 @push('scripts')
     <script>
-
         const location23 = $('.location').val();
         const api_url =
-            "https://nominatim.openstreetmap.org/search.php?city="+location23+"&format=jsonv2";
+            "https://nominatim.openstreetmap.org/search.php?city=" + location23 + "&format=jsonv2";
 
         $('.location').on('keyup', function () {
-            const url = "https://nominatim.openstreetmap.org/search.php?city="+$(this).val()+"&format=jsonv2";
+            const url = "https://nominatim.openstreetmap.org/search.php?city=" + $(this).val() + "&format=jsonv2";
             $(this).next().empty();
             getapi(url).then((data) => {
                 data.forEach(function (item) {
@@ -206,7 +233,7 @@
 
 
         });
-        $(document).on('click', '#listValue', function(){
+        $(document).on('click', '#listValue', function () {
             $('.location').val($(this).data('name'));
             $('.location').data('lat', $(this).data('lat'));
             $('.location').data('lon', $(this).data('lon'));
@@ -228,19 +255,20 @@
                 url: "{{route('buy.index')}}",
                 type: 'GET',
                 data: {
-                    'latitude' : latitude,
-                    'longitude' : longitude,
-                    'price' : price,
-                    'type' : type,
-                    'purpose' : purpose,
+                    'latitude': latitude,
+                    'longitude': longitude,
+                    'price': price,
+                    'type': type,
+                    'purpose': purpose,
                 },
-                success: function(data) {
+                success: function (data) {
+
                     $('.properties').empty();
                     let fav = [];
                     if (data.listings.length == 0) {
                         $('.properties').append(`
-                            <div class="alert alert-info">
-                                <h5>No data is available for this search</h5>
+                            <div>
+                                <h4>No data is available for this search</h4>
                             </div>
                         `);
                     } else {
@@ -254,23 +282,23 @@
                             let photos = '';
                             item.photo_url.forEach(function (photo) {
                                 photos += `
-                            <div class="carousel-item active">
-                                <img src="${photo}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover">
-                            </div>;`
+                                <div class="carousel-item active">
+                                    <img src="${photo}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover">
+                                </div>;`
                             })
                             let url = "{{route('listings.show', 'id')}}";
                             let route = url.replace('id', item.id);
                             let favs = fav.includes(item.id);
 
                             html += `
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 m-0 p-0">
-                                <div class="img">
-                                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                               ${photos}
-                        </div>
-{{--                                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">--}}
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 m-0 p-0">
+                                    <div class="img">
+                                        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                   ${photos}
+                            </div>
+    {{--                                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">--}}
                             {{--                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
                             {{--                                                        <span class="visually-hidden">Previous</span>--}}
                             {{--                                                    </button>--}}
@@ -280,7 +308,7 @@
                             {{--                                                    </button>--}}
 
                             </div>
-{{--                                                @if($item->getMedia('listings')->isNotEmpty())--}}
+    {{--                                                @if($item->getMedia('listings')->isNotEmpty())--}}
                             {{--                                                    <img class="panel-img" src="{{$item->getMedia('listings')[0]->getFullUrl()}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
                             {{--                                                @else--}}
                             {{--                                                    <img class="panel-img" src="{{asset('img/download.png')}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
@@ -288,17 +316,17 @@
                             </div>
                             <div class="card-body mb-0 pb-0">
                                 <p class="text-sm font-weight-bold m-0 p-0">Rs. ${item.price}</p>
-                                                <p class="text-xs m-0 p-0">${item.location} </p>
-                                            </div>
-                                            <div class="footer mx-3 mb-3 mt-0">
-                                                <div class="d-inline-flex float-left text-xs my-3">
-                                                    <a href="${route}">Click here to view ></a>
-                                                    @if(auth()->user())
+                                                    <p class="text-xs m-0 p-0">${item.location} </p>
+                                                </div>
+                                                <div class="footer mx-3 mb-3 mt-0">
+                                                    <div class="d-inline-flex float-left text-xs my-3">
+                                                        <a href="${route}">Click here to view ></a>
+                                                        @if(auth()->user())
                             {{--<form action="{{route('favorite.store')}}" method="GET">--}}
                             {{--        <input type="hidden" id="favHidden" name="favorite">--}}
                             {{--</form>--}}
                             <i class="${favs == true ? 'fa-solid fa-heart fa-xl favorite ' : 'fa-regular fa-heart fa-xl favorite'}" data-value="${item.id}" style="color: #fa0000;"></i>
-                                                    @endif
+                                                        @endif
                             </div>
                             <div class="d-inline-flex float-right">
 
@@ -315,28 +343,24 @@
 
                 }
             })
-                .done(function(data){
+                .done(function (data) {
 
                 });
         });
 
-        $('.properties').on('click', '.favorite', function(){
+        $('.properties').on('click', '.favorite', function () {
             $.ajax({
                 url: "{{route('favorite.store')}}",
                 type: 'GET',
                 data: {
-                    'favorite' : $(this).data('value')
+                    'favorite': $(this).data('value')
                 },
-                success : function (data) {
+                success: function (data) {
                     $(document).find('.favorite').each(function () {
-                        if($(this).data('value') == data.listing_id)
-                        {
-                            if($(this).hasClass('fa-solid'))
-                            {
+                        if ($(this).data('value') == data.listing_id) {
+                            if ($(this).hasClass('fa-solid')) {
                                 $(this).removeClass('fa-solid').addClass('fa-regular');
-                            }
-                            else if($(this).hasClass('fa-regular'))
-                            {
+                            } else if ($(this).hasClass('fa-regular')) {
                                 $(this).addClass('fa-solid').removeClass('fa-regular');
 
                             }
@@ -347,6 +371,7 @@
             })
             // $(this).prev().submit();
         })
+
         // Defining async function
         async function getapi(url) {
 
@@ -358,8 +383,8 @@
 
 
         }
-        function addMap(properties)
-        {
+
+        function addMap(properties) {
             // Remove all existing layers from the map
             map.eachLayer(function (layer) {
                 map.removeLayer(layer);
@@ -380,11 +405,14 @@
             properties.forEach(function (item, index) {
                 L.marker([item.latitude, item.longitude])
                     .bindPopup(`
-                        <div class="popup-content"><h6>${item.title}</h6><p>Rs. ${item.price}</p><p>${item.location}</p></div>`, {autoClose:false, closeOnClick:false})
-                    .on('mouseover', function(e) {
+                        <div class="popup-content"><h6>${item.title}</h6><p>Rs. ${item.price}</p><p>${item.location}</p></div>`, {
+                        autoClose: false,
+                        closeOnClick: false
+                    })
+                    .on('mouseover', function (e) {
                         this.openPopup();
                     })
-                    .on('mouseout', function(e) {
+                    .on('mouseout', function (e) {
                         this.closePopup();
                     })
                     .addTo(map);
