@@ -56,7 +56,6 @@ class ManageListingController extends BaseController
             'price' => 'required|numeric',
         ]);
         $features = [
-            "rent" => $request->rent,
             "deposit" => $request->deposit,
             "duration" => $request->duration,
             "area" => $request->area,
@@ -144,7 +143,6 @@ class ManageListingController extends BaseController
             'price' => 'required|numeric',
         ]);
         $features = [
-            "rent" => $request->rent,
             "deposit" => $request->deposit,
             "duration" => $request->duration,
             "area" => $request->area,
@@ -199,8 +197,9 @@ class ManageListingController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Listing $listing)
+    public function destroy($id)
     {
+        $listing = Listing::findOrFail($id);
         $listing->delete();
         $listing->clearMediaCollection('listings');
         $listing->clearMediaCollection('video');

@@ -5,8 +5,9 @@
     </div>
 
     <div class="col-md-4 mb-3">
+
         <label for="price">How much is the monthly rent?<span style="color: red;"> *</span></label>
-        <input type="number" class="form-control" id="price" placeholder="Price" name="price" {{ $item?$item->price: ''}} required>
+        <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="{{ $item->price? : ''}}" required>
     </div>
 
     <div class="col-md-4 mb-3">
@@ -98,12 +99,12 @@
             </select>
         </div>
     </div>
-    <div class="col-md-6 mb-3">
+    <div class="col-md-6 mb-3" id="imageDiv">
         <label for="image">Images of the property <span class="text-danger">*</span></label>
         <div class="file-section">
             <button class="btn  btn-outline-primary mr-2 " id="file-upload"><i class="fa-solid fa-upload"></i>Attach File
             </button>
-            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" @if(isset($item) && $item->getMedia('listings') == NULL) required @endif  accept="image/png, image/gif, image/jpeg">
+            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" @if(isset($item) && $item->photo_url)  @else required @endif style="display:none"  accept="image/png, image/gif, image/jpeg">
         </div>
     </div>
     <span id="message"></span>
@@ -202,22 +203,22 @@
 </script>
 <div class="form-row mt-4">
     <div class="col-md-4 mb-3">
-        <label for="location">Location</label>
-        <input type="text" class="form-control w-100" id="location" placeholder="Location" name="location" value="{{$item? $item->location: ''}}">
+        <label for="location">Location <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" id="location" placeholder="Location" required readonly name="location" value="{{$item? $item->location: ''}}">
         <div class="">
             {{-- Please provide a valid state. --}}
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control w-100" id="latitude" placeholder="Latitude" name="latitude" value="{{$item? $item->latitude: ''}}">
+        <label for="latitude">Latitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" id="latitude" placeholder="Latitude"required readonly name="latitude" value="{{$item? $item->latitude: ''}}">
         <div class="">
             {{-- Please provide a valid zip. --}}
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label for="longitude">Longitude</label>
-        <input type="text" class="form-control w-100" id="longitude" placeholder="Longitude" name="longitude" value="{{$item? $item->longitude: ''}}">
+        <label for="longitude">Longitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" id="longitude" placeholder="Longitude" required readonly name="longitude" value="{{$item? $item->longitude: ''}}">
         <div class="">
             {{-- Please provide a valid city. --}}
         </div>

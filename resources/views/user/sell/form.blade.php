@@ -1,4 +1,5 @@
 <div class="form-row" >
+
     <div class="col-md-4 mb-3">
         <label for="validationServer01">Title<span style="color: red;"> *</span></label>
         <input type="text" class="form-control" id="title" placeholder="Title" value="{{ $item?$item->title:''}}" required name="title">
@@ -49,7 +50,7 @@
     </div>
 
     <div class="col-md-4 mb-3" id="no_of_storiesLabel">
-        <label for="no_of_stories">Number of stories</label>
+        <label for="no_of_stories">Number of storeys</label>
         <input type="number" class="form-control" id="no_of_stories" placeholder="No of stories" value="{{isset($features) ? $features['no_of_stories'] : ''}}" name="no_of_stories">
         {{-- <div class="valid-feedback">
           Looks good!
@@ -81,12 +82,17 @@
             </select>
         </div>
     </div>
-    <div class="col-md-6 mb-3">
+    <div class="col-md-6 mb-3" id="imageDiv">
         <label for="image">Images of the property <span class="text-danger">*</span></label>
         <div class="file-section">
             <button class="btn  btn-outline-primary mr-2 " id="file-upload"><i class="fa-solid fa-upload"></i>Attach File
             </button>
-            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" style="display:none" accept="image/png, image/gif, image/jpeg">
+
+{{--            @if(isset($item) && $item->photo_url)--}}
+                <input type="file" class="" multiple  name="files[]" @if(isset($item) && $item->photo_url)  @else required @endif id="file-upload-hidden" style="display:none" accept="image/png, image/gif, image/jpeg">
+{{--            @else--}}
+{{--                <input type="file" class="" multiple  name="files[]" id="file-upload-hidden" required style="display:none" accept="image/png, image/gif, image/jpeg">--}}
+{{--            @endif--}}
         </div>
     </div>
     <span id="message"></span>
@@ -185,22 +191,22 @@
 </script>
 <div class="form-row mt-4">
     <div class="col-md-4 mb-3">
-        <label for="location">Location</label>
-        <input type="text" class="form-control w-100" id="location" placeholder="Location" name="location" value="{{$item? $item->location: ''}}">
+        <label for="location">Location <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" required readonly id="location" placeholder="Location" name="location" value="{{$item? $item->location: ''}}">
         <div class="">
             {{-- Please provide a valid state. --}}
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control w-100" id="latitude" placeholder="Latitude" name="latitude" value="{{$item? $item->latitude: ''}}">
+        <label for="latitude">Latitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" required readonly id="latitude" placeholder="Latitude" name="latitude" value="{{$item? $item->latitude: ''}}">
         <div class="">
             {{-- Please provide a valid zip. --}}
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label for="longitude">Longitude</label>
-        <input type="text" class="form-control w-100" id="longitude" placeholder="Longitude" name="longitude" value="{{$item? $item->longitude: ''}}">
+        <label for="longitude">Longitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" required readonly id="longitude" placeholder="Longitude" name="longitude" value="{{$item? $item->longitude: ''}}">
         <div class="">
             {{-- Please provide a valid city. --}}
         </div>
@@ -214,5 +220,6 @@
         trailer.src = URL.createObjectURL(event.target.files[0]);
         $('#video-create').css('display', '');
     };
+
 
 </script>

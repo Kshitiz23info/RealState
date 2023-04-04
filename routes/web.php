@@ -16,7 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $info['item'] = \App\Models\Listing::orderBy('id', 'desc')->limit(15)->get();
+    if (\auth()->user())
+    {
+        $info['item'] = \App\Models\Listing::orderBy('id', 'desc')->whereNot('user_id', \auth()->user()->id)->limit(15)->get();
+    }
+    else{
+        $info['item'] = \App\Models\Listing::orderBy('id', 'desc')->limit(15)->get();
+    }
+
     return view('welcome', $info);
 });
 
@@ -42,7 +49,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::resource('/sell', App\Http\Controllers\User\SellController::class);
     Route::get('/favorites/property', [App\Http\Controllers\FavoriteController::class, 'index'])->name('favorites.index');
 });
-Route::resource('/listings', App\Http\Controllers\User\ListingController::class);
+Route::resource('/listings', App\Http\Controllers\ListingController::class);
 //Route::get('/contact-info/property/user', [App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact-info/property', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::resource('/buy', App\Http\Controllers\User\SearchController::class);
