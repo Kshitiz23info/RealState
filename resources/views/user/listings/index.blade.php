@@ -103,8 +103,9 @@
                         <div class="form-group form-floating">
                             <select class="form-control custom-select form-select price"  id="floatingSelect">
                                 <option value="">All</option>
-                                <option>50000-60000</option>
-                                <option>5000-100000</option>
+                                @foreach(config('price-range.price') as $price)
+                                    <option>{{$price}}</option>
+                                @endforeach
                             </select>
                             <label for="floatingSelect">Price Range</label>
 
