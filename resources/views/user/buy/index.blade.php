@@ -77,28 +77,9 @@
 @endpush
 
 @section('content')
-
-<<<<<<< HEAD
-<section class="buy_section">
-    <!--/ Intro Single star /-->
-    <section class="intro-single" style="padding: 2.2rem; ">
-
-    </section>
-    <div>
-        <div class="container-fluid bg-light m-0 py-2">
-            <div class="row">
-                <form class="rent-filter">
-                    <div class="form-group">
-                        <div class="input-group inner-addon right-addon form-floating">
-                            <input type="text" class="form-control location" placeholder="Location" list="locations" value="Pokhara, Kaski, Gandaki Pradesh, Nepal" id="floatingInput" data-lat="28.209538" data-lon="83.991402">
-                            <ul id="locations">
-                            </ul>
-                            <span><i class="fas fa-search"></i></span>
-                            <label for="floatingInput">Location</label>
-
     <section class="buy_section">
         <!--/ Intro Single star /-->
-        <section class="intro-single" style="padding: 4rem; ">
+        <section class="intro-single" style="padding: 2.2rem; ">
 
         </section>
         <div>
