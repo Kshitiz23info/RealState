@@ -14,6 +14,24 @@
                     <div class="title-single-box mb-5">
                         <h1 class="title-single">Your Property Listings on Sale</h1>
                     </div>
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{$error}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endforeach
+                    @endif
                     <div class="add">
                         <h4><a href="{{route($route.'create')}}"><i class="fa-solid fa-circle-plus addIcon"></i>
                                 Add a property</a></h4>

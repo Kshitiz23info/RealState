@@ -37,7 +37,6 @@ class HomeController extends Controller
         {
             $info['listings'] = Listing::all();
         }
-//        dd($info['listings']);
         return view('properties.index', $info);
     }
 
