@@ -57,17 +57,18 @@
                                         </h5>
                                         <h4>Rs:{{$item->price}}</h4>
                                     </div>
+                                    <span>Type: {{json_decode($item->features)->type ?:'N/a'}}</span>
                                     <div class="card-tag">
-                                        <span>{{json_decode($item->features)->bedroom ?:0}}</span>
+                                        @if(json_decode($item->features)->type == 'Home')
+                                        <span>{{json_decode($item->features)->bedroom ?:'N/a'}}</span>
                                         <span>Bed</span> |
-                                        <span>{{json_decode($item->features)->bathroom ?:0}}</span>
+                                        <span>{{json_decode($item->features)->bathroom ?:'N/a'}}</span>
                                         <span>Baths</span> |
-                                        <span>{{json_decode($item->features)->area ?:0}}</span>
+                                        @endif
+                                        <span>{{json_decode($item->features)->area ?:'N/a'}} m<sup>2</sup></span>
                                         <span>Area</span> |
-                                        <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>
-                                        <span>Parking</span>
                                     </div>
-                                    <p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
+                                    <p class="" style="margin: 0.5rem 0">{{$item->description? Str::limit($item->description, 40) :'N/a'}}</p>
                                     <a href="{{route($route.'show', $item->id)}}" class="btn btn-secondary ">Read More</a>
                                     <div class="d-inline-flex float-right">
                                         <a href="{{ route($route.'edit',$item->id) }}" type="submit"

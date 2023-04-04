@@ -169,7 +169,9 @@
                                                     </div>
                                                     <div class="card-body mb-0 pb-0">
                                                         <p class="text-sm font-weight-bold m-0 p-0">
-                                                            Rs. {{ $item->price }}</p>
+                                                            Rs. {{ $item->price }}</p> <p class="text-sm m-0 p-0">
+                                                            Type: {{ json_decode($item->features)->type}}</p>
+                                                        @if(json_decode($item->features)->type == 'Home' )
                                                         <p class="text-xs m-0 p-0"><span
                                                                 class="font-weight-bold"> {{ json_decode($item->features)->bedroom }}</span>
                                                             beds | <span
@@ -177,13 +179,12 @@
                                                             | <span
                                                                 class="font-weight-bold">{{ json_decode($item->features)->area }}</span>m<sup>2</sup>
                                                         </p>
+                                                        @endif
                                                         <p class="text-xs m-0 p-0">{{ explode(',', $item->location)[0] . ','. explode(',', $item->location)[1]. ','. explode(',', $item->location)[3]}} </p>
                                                     </div>
                                                     <div class="footer mx-3 mb-3 mt-0 d-flex justify-content-between">
                                                         <div class="d-inline-flex float-left text-xs my-3">
                                                             <a href="{{route('listings.show', $item->id)}}" class="btn btn-primary">Click here</a>
-
-
                                                         </div>
                                                         <div class="d-flex align-items-center">
                                                             @if(auth()->user())
@@ -284,54 +285,55 @@
                             item.photo_url.forEach(function (photo) {
                                 photos += `
                                 <div class="carousel-item active">
-                                    <img src="${photo}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover">
+                                    <img src="${photo}" class="d-block w-100" alt="..." style="height: 150px; object-fit: cover; border-radius: 15px 15px 0 0;">
                                 </div>;`
                             })
+                            let features = '';
+                            console.log(JSON.parse(item.features).type)
+                            if (JSON.parse(item.features).type == 'Home')
+                            {
+                                features += `<p class="text-xs m-0 p-0">
+
+                                 <span class="font-weight-bold"> ${ (JSON.parse(item.features).bedroom ) ?? 'N/a'} </span>
+                                                            beds | <span
+                                        class="font-weight-bold">${ (JSON.parse(item.features).bathroom ) ?? 'N/a'}</span>baths
+                                                            | <span
+                                                                class="font-weight-bold">${ (JSON.parse(item.features).area ) ?? 'N/a'}</span>m<sup>2</sup>
+                                                        </p>`;
+                            }
                             let url = "{{route('listings.show', 'id')}}";
                             let route = url.replace('id', item.id);
                             let favs = fav.includes(item.id);
 
                             html += `
-                            <div class="col-md-6 mb-3">
-                                <div class="card h-100 m-0 p-0">
+                            <div class="col-md-6 mt-2">
+                                <div class="card card-box-rs h-100 m-0 p-0">
                                     <div class="img">
                                         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                                             <div class="carousel-inner">
                                                    ${photos}
                             </div>
-    {{--                                                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">--}}
-                            {{--                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-                            {{--                                                        <span class="visually-hidden">Previous</span>--}}
-                            {{--                                                    </button>--}}
-                            {{--                                                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">--}}
-                            {{--                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-                            {{--                                                        <span class="visually-hidden">Next</span>--}}
-                            {{--                                                    </button>--}}
 
                             </div>
-    {{--                                                @if($item->getMedia('listings')->isNotEmpty())--}}
-                            {{--                                                    <img class="panel-img" src="{{$item->getMedia('listings')[0]->getFullUrl()}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
-                            {{--                                                @else--}}
-                            {{--                                                    <img class="panel-img" src="{{asset('img/download.png')}}" alt="Rent Property Image" style="width: 100%; height: 30vh; object-fit: cover">--}}
-                            {{--                                                @endif--}}
                             </div>
                             <div class="card-body mb-0 pb-0">
                                 <p class="text-sm font-weight-bold m-0 p-0">Rs. ${item.price}</p>
-                                                    <p class="text-xs m-0 p-0">${item.location} </p>
+                                <p class="text-sm m-0 p-0">
+                                                            Type: ${ JSON.parse(item.features).type}</p>
+                                 ${features}
+                                                    <p class="text-xs m-0 p-0">${item.location.split(',')[0] + ',' + item.location.split(',')[1] + ',' + item.location.split(',')[3]} </p>
                                                 </div>
-                                                <div class="footer mx-3 mb-3 mt-0">
+                                                <div class="footer mx-3 mb-3 mt-0 d-flex justify-content-between">
                                                     <div class="d-inline-flex float-left text-xs my-3">
-                                                        <a href="${route}">Click here to view ></a>
+                                                        <a href="${route}" class="btn btn-primary">Click here</a>
+                                                        </div>
+                                                        <div class="d-flex align-items-center">
                                                         @if(auth()->user())
-                            {{--<form action="{{route('favorite.store')}}" method="GET">--}}
-                            {{--        <input type="hidden" id="favHidden" name="favorite">--}}
-                            {{--</form>--}}
+
                             <i class="${favs == true ? 'fa-solid fa-heart fa-xl favorite ' : 'fa-regular fa-heart fa-xl favorite'}" data-value="${item.id}" style="color: #fa0000;"></i>
                                                         @endif
                             </div>
-                            <div class="d-inline-flex float-right">
 
-                            </div>
                         </div>
                     </div>
                 </div>

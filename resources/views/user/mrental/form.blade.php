@@ -9,7 +9,16 @@
         <label for="price">How much is the monthly rent?<span style="color: red;"> *</span></label>
         <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="{{ $item ? $item->price : ''}}" required>
     </div>
-
+    <div class="col-md-4 mb-3">
+        <div class="form-group">
+            <label>Property Type (m <sup>2</sup>)</label><br>
+            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
+            <select class="custom-select type"  name="type" id="type">
+                <option value="Home" {{isset($features) ? ($features['type'] == "Home"?'selected': ''): ''}}>Home</option>
+                <option value="Land" {{isset($features) ? ($features['type'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
+            </select>
+        </div>
+    </div>
     <div class="col-md-4 mb-3">
         <label for="deposit">How much is the security deposit?</label>
         <input type="number" class="form-control" id="deposit" placeholder="Deposit" name="deposit" value="{{isset($features) ? $features['deposit'] : ''}}">
@@ -89,16 +98,8 @@
           Looks good!
         </div> --}}
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="form-group">
-            <label>Property Type</label><br>
-            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
-            <select class="custom-select type"  name="type" id="type">
-                <option value="Home" {{isset($features) ? ($features['type'] == "Home"?'selected': ''): ''}}>Home</option>
-                <option value="Land" {{isset($features) ? ($features['type'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
-            </select>
-        </div>
-    </div>
+
+
     <div class="col-md-6 mb-3" id="imageDiv">
         <label for="image">Images of the property <span class="text-danger">*</span></label>
         <div class="file-section">

@@ -10,13 +10,23 @@
         <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="{{ $item?$item->price:''}}" required>
     </div>
 
+    <div class="col-md-4 mb-3">
+        <div class="form-group">
+            <label>Property Type</label><br>
+            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
+            <select class="custom-select type"  name="type" id="type">
+                <option value="Home" {{isset($features) ? ($features['type'] == "Home"?'selected': ''): ''}}>Home</option>
+                <option value="Land" {{isset($features) ? ($features['type'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
+            </select>
+        </div>
+    </div>
     <div class="col-md-4 mb-3" id="depositLabel">
         <label for="deposit">How much is the security deposit?</label>
         <input type="number" class="form-control" id="deposit" placeholder="Deposit" name="deposit" value="{{isset($features) ? $features['deposit'] : ''}}">
     </div>
 
     <div class="col-md-4 mb-3" id="areaLabel">
-        <label for="area">Area of the property</label>
+        <label for="area">Area of the property (m<sup>2</sup>)</label>
         <input type="number" class="form-control" id="area" placeholder="Area" value="{{isset($features) ? $features['area'] : ''}}" name="area" >
     </div>
 
@@ -71,16 +81,6 @@
             <option value="yes"{{isset($features) ? ($features['parking'] == "yes"?'selected': ''): ''}}>Yes</option>
             <option value="no"{{isset($features) ? ($features['parking'] == "no"?'selected': ''): ''}}>No</option>
         </select>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="form-group">
-            <label>Property Type</label><br>
-            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
-            <select class="custom-select type"  name="type" id="type">
-                <option value="Home" {{isset($features) ? ($features['type'] == "Home"?'selected': ''): ''}}>Home</option>
-                <option value="Land" {{isset($features) ? ($features['type'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
-            </select>
-        </div>
     </div>
     <div class="col-md-6 mb-3" id="imageDiv">
         <label for="image">Images of the property <span class="text-danger">*</span></label>

@@ -194,59 +194,9 @@
                         <span>Area</span>
 
                     </div>
-                    <span>Type: {{json_decode($item->features)->type}}</span><p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
+                    <span>Type: {{json_decode($item->features)->type}}</span><p class="" style="margin: 0.5rem 0">{{$item->description? Str::limit($item->description, 40):'N/A'}}</p>
                     <a href="{{route('listings.show', $item->id)}}" class="btn btn-secondary ">Read More</a>
                 </div>
-{{--            <div class="carousel-item-b">--}}
-{{--                <div class="card-box-a card-shadow" style="position: relative">--}}
-{{--                    <h4><span class="badge text-bg-warning text-white text-lg" style="position: absolute;">For {{ ucfirst(trans($item->type))}}</span></h4>--}}
-{{--                        <div class="img-box-a">--}}
-{{--                           <img src={{!$item->getMedia('listings')->isEmpty()?$item->getMedia('listings')[0]->getFullUrl():''}} alt="Image" class="img-a img-fluid">--}}
-{{--                         </div>--}}
-
-{{--                </div>--}}
-{{--                <div class="card-overlay">--}}
-{{--                    <div class="card-overlay-a-content">--}}
-{{--                        <div class="card-header-a">--}}
-{{--                            <h2 class="card-title-a">--}}
-{{--                                <a href="{{route('listings.show', $item->id)}}">{{$item->title}}--}}
-{{--                                </a>--}}
-{{--                            </h2>--}}
-{{--                        </div>--}}
-{{--                        <div class="card-body-a">--}}
-{{--                            <div class="price-box d-flex">--}}
-{{--                                <span class="price-a">Price | Rs. {{$item->price}}</span>--}}
-{{--                            </div>--}}
-{{--                            <a href="{{route('listings.show', $item->id)}}" class="link-a btn-secondary btn">Click here to view--}}
-{{--                                <span class="ion-ios-arrow-forward"></span>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                        <div class="card-footer-a">--}}
-{{--                            <ul class="card-info d-flex justify-content-around">--}}
-{{--                                <li>--}}
-{{--                                    <h4 class="card-info-title">Area</h4>--}}
-{{--                                    <span>{{json_decode($item->features)->area ?:0}}--}}
-{{--                                        <sup>2</sup>--}}
-{{--                                      </span>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <h4 class="card-info-title">Beds</h4>--}}
-{{--                                    <span>{{json_decode($item->features)->bedroom ?:0}}</span>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <h4 class="card-info-title">Baths</h4>--}}
-{{--                                    <span>{{json_decode($item->features)->bathroom ?:0}}</span>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <h4 class="card-info-title">Garages</h4>--}}
-{{--                                    <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--            </div>--}}
             @endforeach
 
         </div>

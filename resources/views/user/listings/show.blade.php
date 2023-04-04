@@ -9,12 +9,12 @@
                 <div class="carousel-item-b text-center" style="position: relative;">
                     <img src="{{ $image->getFullUrl() }}" alt="Property Image"
                          style="height: 80vh; width:100%; object-fit:cover">
-                    @if($item->title || $item->location)
-                    <div class="" style="position: absolute;top: 50%;left: 30%;background: #2ECA6A;color: #ffffff;padding: 0.5rem 2rem;">
-                       <h1 class="title-single">{{$item->Title}}</h1>
-                       <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>
-                    </div>
-                    @endif
+    {{--                    @if($item->title || $item->location)--}}
+    {{--                    <div class="" style="position: absolute;top: 50%;left: 30%;background: #2ECA6A;color: #ffffff;padding: 0.5rem 2rem;">--}}
+    {{--                       <h1 class="title-single">{{$item->Title}}</h1>--}}
+    {{--                       <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>--}}
+    {{--                    </div>--}}
+    {{--                    @endif--}}
                 </div>
             @endforeach
         </div>
@@ -72,10 +72,6 @@
                                     <div class="summary-list">
                                         <ul class="list">
                                             <li class="d-flex justify-content-between">
-                                                <strong>Location:</strong>
-                                                <span>{{$item->location?:'N/A'}}</span>
-                                            </li>
-                                            <li class="d-flex justify-content-between">
                                                 <strong>Property Type:</strong>
                                                 <span>{{json_decode($item->features)?json_decode($item->features)->type ?:'N/A':'N/A'}}</span>
                                             </li>
@@ -85,34 +81,37 @@
                         <sup>2</sup>
                       </span>
                                             </li>
+                                            @if($item->features && json_decode($item->features)->type == "Home")
+
                                             <li class="d-flex justify-content-between">
                                                 <strong>Beds:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->bedroom ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->bedroom ?:'N/A':'N/A'}}</span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <strong>Baths:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->bathroom ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->bathroom ?:'N/A':'N/A'}}</span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <strong>Livingroom:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->livingroom ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->livingroom ?:'N/A':'N/A'}}</span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <strong>Kitchen:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->kitchen ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->kitchen ?:'N/A':'N/A'}}</span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <strong>Parking:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->parking ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->parking ?:'N/A':'N/A'}}</span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <strong>Road width:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->road_width ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->road_width ?:'N/A':'N/A'}}</span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <strong>Number of storeys:</strong>
-                                                <span>{{json_decode($item->features)?json_decode($item->features)->no_of_stories ?:'N/A':'N/A'}}</span>
+                                                <span>{{$item->features?json_decode($item->features)->no_of_stories ?:'N/A':'N/A'}}</span>
                                             </li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>
