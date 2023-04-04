@@ -42,7 +42,6 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-//dd($request->all());
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -74,7 +73,9 @@ class ContactController extends Controller
         $owner->notify(new ContactNotification($user, $property, $owner));
         $admin->notify(new ContactNotification($user, $property, $admin));
 
-        return redirect()->back()->with('success', 'Contact Submitted Successfully!');
+        return view('user.success');
+
+//        return redirect()->back()->with('success', 'Contact Submitted Successfully!');
 
 
     }

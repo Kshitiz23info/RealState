@@ -55,4 +55,5 @@ Route::post('/contact-info/property', [App\Http\Controllers\ContactController::c
 Route::resource('/buy', App\Http\Controllers\User\SearchController::class);
 Route::get('/favorite', [App\Http\Controllers\FavoriteController::class, 'store'])->name('favorite.store');
 Route::get('/all-properties', [App\Http\Controllers\HomeController::class, 'getAllProperties'])->name('properties.index');
+//Route::get('/success-message', [App\Http\Controllers\HomeController::class, 'success'])->name('properties.index');
 

@@ -225,7 +225,7 @@
                     </div>
                     <div class="card p-3 w-100">
                         <div class="row">
-                            <form action="{{route('contact.store')}}" method="POST">
+                            <form action="{{route('contact.store')}}" method="POST" id="contactForm">
                                 @csrf
                                 <input type="hidden" value="{{$item->id}}" name="property_id">
                                 <input type="hidden" value="{{$item->user_id}}" name="property_owner">
@@ -274,7 +274,8 @@
     <script>
         $(document).ready(function () {
             $('#submit_btn').on('click', function () {
-                $('#form').submit();
+
+                $('#contactForm').submit();
             });
         });
         $(document).on('click', '.favorite', function(){

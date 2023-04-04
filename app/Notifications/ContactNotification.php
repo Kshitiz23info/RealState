@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Listing;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,9 +16,11 @@ class ContactNotification extends Notification
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $user
+     * @param $property
+     * @param $recipient
      */
-    public function __construct($user, $property, $recipient)
+    public function __construct($user, Listing $property, $recipient)
     {
         $this->user = $user;
         $this->property = $property;
@@ -43,7 +46,7 @@ class ContactNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject('Property Contact')->markdown('mail.contact.mail', ['user' => $this->user, 'property'=> $this->property, 'recipient' => $this->recipient, 'url' => route('listings.show', ['id' => $this->property->id])]);
+        return (new MailMessage)->subject('Property Contact')->markdown('mail.contact.mail', ['user' => $this->user, 'property'=> $this->property, 'recipient' => $this->recipient, 'url' => route('listings.show', $this->property->id)]);
     }
 
     /**
