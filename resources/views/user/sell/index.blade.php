@@ -68,7 +68,7 @@
                                         <span>Parking</span>
                                     </div>
                                     <p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
-                                    <a href="{{route('listings.show', $item->id)}}" class="btn btn-secondary ">Read More</a>
+                                    <a href="{{route($route.'show', $item->id)}}" class="btn btn-secondary ">Read More</a>
                                     <div class="d-inline-flex float-right">
                                         <a href="{{ route($route.'edit',$item->id) }}" type="submit"
                                            class="btn btn-primary mr-2"><i

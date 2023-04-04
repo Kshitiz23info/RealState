@@ -3,38 +3,31 @@
 
   <!--/ Intro Single star /-->
   <section class="intro-single">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <form  method="POST" action="" enctype="multipart/form-data" >
-            @csrf
-              @if($item->title || $item->location)
+      <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+          @foreach($item->getMedia('listings') ?? [] as $image)
 
-              <div class="title-single-box">
-            <h1 class="title-single">{{$item->Title}}</h1>
-            <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>
-            {{-- <span class="color-text-a">{{$item->city}}</span> --}}
-          </div>
-            @endif
-
-        </div>
-        <div class="col-md-12 col-lg-4">
-          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="property-grid.html">Properties</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-{{--                {{$item->tole}}--}}
-              </li>
-            </ol>
-          </nav>
-        </div>
+              <div class="carousel-item-b text-center" style="position: relative;">
+                  <img src="{{ $image->getFullUrl() }}" alt="Property Image"
+                       style="height: 80vh; width:100%; object-fit:cover">
+                  @if($item->title || $item->location)
+                      <div class="" style="position: absolute;top: 50%;left: 30%;background: #2ECA6A;color: #ffffff;padding: 0.5rem 2rem;">
+                          <h1 class="title-single">{{$item->Title}}</h1>
+                          <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>
+                      </div>
+                  @endif
+              </div>
+          @endforeach
       </div>
-    </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12 col-lg-8 d-flex ">
+                  <div class="title-single-box">
+                      <h2>Price: Rs {{$item->price}}</h2>
+                  </div>
+              </div>
+
+          </div>
+      </div>
   </section>
   <!--/ Intro Single End /-->
 
@@ -52,14 +45,19 @@
               @endforeach
           </div>
           <div class="row justify-content-between">
-            <div class="col-md-5 col-lg-5">
-              <div class="property-price d-flex justify-content-center foo">
-                <div class="card-header-c d-flex">
-                  <div class="card-box-ico align-self-center ">
-                    <h2>Price: Rs {{$item->price}}</h2>
+              <div class="row pt-4">
+                  <div class="col-sm-12">
+                      <div class="title-box-d">
+                          <h3 class="title-d">Property Description</h3>
+                      </div>
                   </div>
-                </div>
               </div>
+              <div class="property-description">
+                  <p class="description color-text-a">
+                      {{$item->description?:'N/A'}}
+                  </p>
+              </div>
+            <div class="col-md-5 col-lg-5">
               <div class="property-summary">
                 <div class="row">
                   <div class="col-sm-12">
@@ -116,19 +114,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-7 col-lg-7 section-md-t3">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">Property Description</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="property-description">
-                <p class="description color-text-a">
-                  {{$item->description?:'N/A'}}
-                </p>
-              </div>
+            <div class="col-md-7 col-lg-7 section-md-t3 pt-3">
+
               <div class="row section-t3">
                 <div class="col-sm-12">
                   <div class="title-box-d">
@@ -151,7 +138,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-12">
           <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
 
             <li class="nav-item">

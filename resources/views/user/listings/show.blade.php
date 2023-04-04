@@ -10,7 +10,7 @@
                     <img src="{{ $image->getFullUrl() }}" alt="Property Image"
                          style="height: 80vh; width:100%; object-fit:cover">
                     @if($item->title || $item->location)
-                    <div class="" style="position: absolute;top: 50%;left: 30%;">
+                    <div class="" style="position: absolute;top: 50%;left: 30%;background: #2ECA6A;color: #ffffff;padding: 0.5rem 2rem;">
                        <h1 class="title-single">{{$item->Title}}</h1>
                        <h1 class="title-single">{{$item->location ? explode(',', $item->location)[1]:''}}</h1>
                     </div>
@@ -48,16 +48,16 @@
     <section class="property-single nav-arrow-b">
         <div class="container">
             <div class="row mt-3">
-                <div class="title-box-d">
-                    <h3 class="title-d ">Property Description</h3>
-                </div>
-                <div class="property-description">
-                    <p class="description color-text-a">
-                        {{$item->description?:'N/A'}}
-                    </p>
-                </div>
-                <div class="col-sm-12">
 
+                <div class="col-sm-12">
+                    <div class="title-box-d">
+                        <h3 class="title-d ">Property Description</h3>
+                    </div>
+                    <div class="property-description">
+                        <p class="description color-text-a">
+                            {{$item->description?:'N/A'}}
+                        </p>
+                    </div>
                     <div class="row justify-content-between">
                         <div class="col-md-6 col-lg-5">
                             <div class="property-price d-flex justify-content-center foo">
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-7 section-md-t3">
+                        <div class="col-md-6 col-lg-7 section-md-t3 pt-3">
 
                             <div class="row section-t3">
                                 <div class="col-sm-12">
