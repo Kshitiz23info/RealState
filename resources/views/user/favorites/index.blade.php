@@ -104,9 +104,9 @@
                         {{--                            </div>--}}
                     @endforeach
                     @else
-                    <div class="mt-5">
+                    <div class="alert alert-info mt-5">
                         <h4>There are no saved items or content to your Favorites section.</h4>
-                        <p>To add items or content to your "Favorites" section, simply navigate to the item or content and tap the <i class="fas fa-heart" style="color: #fa0000"></i> button.</p>
+                        <p>To add items to your "Favorites" section, simply navigate to the item and tap the <i class="fas fa-heart" style="color: #fa0000"></i> button.</p>
                     </div>
                     @endif
                 </div>

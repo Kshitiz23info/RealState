@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-md-4 mb-3" id="durationLabel">
-        <label for="duration">Lease Duration</label>
+        <label for="duration">Lease Duration <span>(per Year)</span></label>
         <input type="number" class="form-control" id="duration" placeholder="Lease Duration" value="{{isset($features) ? $features['duration'] : ''}}" name="duration">
     </div>
 
