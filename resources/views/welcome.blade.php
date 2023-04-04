@@ -174,7 +174,7 @@
             @foreach($item as $item)
                 <div class="carousel-item-b">
                     <div class="img-box-a">
-                        <img src={{$item->photo_url ? $item->photo_url[0]:''}} alt="Image" class="img-a img-fluid">
+                        <img src={{$item->photo_url ? $item->photo_url[0]:''}} alt="Image" class="img-a img-fluid" style="width: 100%;height: 250px;object-fit: cover;">
                     </div>
                     <div class="d-flex justify-content-between align-items-center pt-2">
                         <h5 class="card-header-a">
