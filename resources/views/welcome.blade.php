@@ -185,17 +185,17 @@
 
                     </div>
                     <div class="card-tag">
-                        <span>{{json_decode($item->features)->bedroom ?:0}}</span>
+                        @if($item->features && json_decode($item->features)->type == "Home")
+                        <span>{{json_decode($item->features)->bedroom ?:'N/a'}}</span>
                         <span>Bed</span> |
-                        <span>{{json_decode($item->features)->bathroom ?:0}}</span>
+                        <span>{{json_decode($item->features)->bathroom ?:'N/a'}}</span>
                         <span>Baths</span> |
-                        <span>{{json_decode($item->features)->area ?:0}}</span>
-                        <span>Area</span> |
-                        <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>
-                        <span>Parking</span>
+                        @endif
+                        <span>{{json_decode($item->features)->area ?:'N/a'}} m <sup>2</sup></span>
+                        <span>Area</span>
 
                     </div>
-                    <p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
+                    <span>Type: {{json_decode($item->features)->type}}</span><p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
                     <a href="{{route('listings.show', $item->id)}}" class="btn btn-secondary ">Read More</a>
                 </div>
 {{--            <div class="carousel-item-b">--}}
