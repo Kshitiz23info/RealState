@@ -2172,6 +2172,9 @@ footer .credits {
 
 
 /*Additional Css*/
+.form-row .form-control,.form-control .custom-select.type{
+    width: 100%;
+}
 .btn-primary{
     background: #2ECA6A;
     color: #ffffff;
