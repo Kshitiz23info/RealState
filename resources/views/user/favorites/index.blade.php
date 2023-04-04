@@ -1,8 +1,8 @@
 @extends('frontend.layouts.main')
 @section('main-container')
     <section class="intro-single">
-        <div class="container">
-            <div class="row">
+        <div class="container mt-3">
+            <div class="row py-4">
                 <div class="col-md-12 col-lg-8">
                     <div class="title-single-box">
                         <h1 class="title-single">Favorites</h1>
@@ -13,64 +13,36 @@
                     @if($favorites->isNotEmpty())
                     @foreach ($favorites ?? [] as $item)
                         <div class="col-md-4 my-2">
-                            <div class="card-box-a card-shadow">
-                                <div class="img-box-a" style="height: 53vh">
+                            <div class="carousel-item-b">
+                                <div class="img-box-a" style="position: relative">
                                     @if($item->listing->photo_url !== null)
                                         <img src="{{$item->listing->photo_url[0]}}" alt="Property Image"
-                                             class="img-a img-fluid thumbnail" style="object-fit: cover">
+                                             class="img-a img-fluid thumbnail" style="width:100%;height:350px;object-fit: cover">
                                     @else
                                         <img src="{{asset('img/download.png')}}" alt="Property Image"
-                                             class="img-a img-fluid thumbnail" style="object-fit: cover">
+                                             class="img-a img-fluid thumbnail" style="width:100%;height:350px;object-fit: cover;object-fit: cover">
                                     @endif
                                 </div>
-                                <div class="card-overlay">
-                                    <div class="card-overlay-a-content">
-                                        <div class="card-header-a">
-                                            <h4 class="card-title-a text-sm">
-                                                <a href="{{route($route.'show', $item->listing->id)}}">{{$item->listing->title}}
-                                                    <br/> </a>
-                                            </h4>
-                                        </div>
-                                        <div class="card-body-a">
-                                            <div class="price-box d-flex">
-                                                <span class="price-a">Price | Rs {{$item->listing->price}}</span>
-                                            </div>
-                                            <a href="{{route($route.'show', $item->listing->id)}}" class="link-a mr-2">Click here to
-                                                view
-                                                <span class="ion-ios-arrow-forward"></span>
-                                            </a>
-                                            <div class="d-inline-flex float-right">
-                                                {{--                                    <a href="{{ route($route.'edit',$item->id) }}" type="submit" class="btn btn-primary mr-2"><i class="fas fa-pencil-alt fa-md"></i></a>--}}
-                                                {{--                                    <form class="d-inline" action="{{ route($route.'destroy',$item->id) }}"--}}
-                                                {{--                                          method="POST" onclick="return confirm('Are you sure?')">--}}
-                                                {{--                                        @csrf--}}
-                                                {{--                                        @method('DELETE')--}}
-                                                {{--                                        <button href="{{route($route.'destroy',$item->id)}}" type="submit" class="btn btn-danger"><i class="fas fa-trash fa-md"></i></button>--}}
-                                                {{--                                    </form>--}}
-                                            </div>
-
-                                        </div>
-                                        <div class="card-footer-a">
-                                            <ul class="card-info d-flex justify-content-around">
-                                                <li>
-                                                    <h4 class="card-info-title">Area</h4>
-                                                    {{json_decode($item->listing->features)->area}}
-                                                    <span> m
-                                                    <sup>2</sup>
-                                                  </span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Beds</h4>
-                                                    <span>{{json_decode($item->listing->features)->bedroom}}</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Baths</h4>
-                                                    <span>{{json_decode($item->listing->features)->bathroom}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center pt-2">
+                                    <h5 class="card-header-a">
+                                        <a href="{{route($route.'show', $item->listing->id)}}">{{$item->listing->title}}
+                                            <br/> </a>
+                                    </h5>
+                                    <h4>Rs:{{$item->listing->price}}</h4>
                                 </div>
+                                <div class="card-tag">
+                                    @if($item->features && json_decode($item->features)->type == "Home")
+                                        <span>{{json_decode($item->listing->features)->bedroom}}</span>
+                                        <span>Bed</span> |
+                                        <span>{{json_decode($item->listing->features)->bathroom}}</span>
+                                        <span>Baths</span> |
+                                    @endif
+                                    <span>{{json_decode($item->listing->features)->area}} m<sup>2</sup></span>
+                                    <span>Area</span>
+
+                                </div>
+                                <span>Type: {{$item->features?json_decode($item->features)->type:'N/a'}}</span><p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
+                                <a href="{{route($route.'show', $item->listing->id)}}" class="btn btn-secondary ">Read More</a>
                             </div>
                         </div>
                         {{--                            <div class="col-md-3">--}}

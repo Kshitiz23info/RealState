@@ -993,7 +993,6 @@ a:hover {
 }
 
 .type {
-    width: 200px;
     border-color: #000000;
     border-width: 1px;
 }
@@ -2173,6 +2172,9 @@ footer .credits {
 
 
 /*Additional Css*/
+.form-row .form-control,.form-control .custom-select.type{
+    width: 100%;
+}
 .btn-primary{
     background: #2ECA6A;
     color: #ffffff;

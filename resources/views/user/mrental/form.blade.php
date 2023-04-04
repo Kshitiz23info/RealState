@@ -7,7 +7,7 @@
     <div class="col-md-4 mb-3">
 
         <label for="price">How much is the monthly rent?<span style="color: red;"> *</span></label>
-        <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="{{ $item->price? : ''}}" required>
+        <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="{{ $item? $item->price : ''}}" required>
     </div>
 
     <div class="col-md-4 mb-3">
