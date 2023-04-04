@@ -202,7 +202,7 @@
                                             </div>
                                         @endforeach
                                     @else
-                                        <div>
+                                        <div class="alert alert-info">
                                             <h4>No data is available for this search</h4>
                                         </div>
                                     @endif
@@ -267,7 +267,7 @@
                     let fav = [];
                     if (data.listings.length == 0) {
                         $('.properties').append(`
-                            <div>
+                            <div class="alert alert-info">
                                 <h4>No data is available for this search</h4>
                             </div>
                         `);

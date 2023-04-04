@@ -20,10 +20,23 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-lg-8">
+                <div class="col-md-12 col-lg-8 d-flex ">
                             <div class="title-single-box">
                                 <h2>Price: Rs {{$item->price}}</h2>
                             </div>
+                    <div class="card-header-c d-flex align-items-center">
+                        <div class=" align-self-center ">
+                            {{--                                        @if(isset($favorite))--}}
+                            @if(auth()->user())
+
+                                <div class="favorite">
+                                    {{--                                            @if(isset($favorite))--}}
+                                    <i class="{{$favorite ? 'fa-solid fa-heart fa-xl favorite' : 'fa-regular fa-heart fa-xl favorite'}}" data-value="{{$item->id}}" style="color: #fa0000;"></i>
+                                    {{--                                                @endif--}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -48,19 +61,6 @@
                     <div class="row justify-content-between">
                         <div class="col-md-6 col-lg-5">
                             <div class="property-price d-flex justify-content-center foo">
-                                <div class="card-header-c d-flex">
-                                    <div class=" align-self-center ">
-{{--                                        @if(isset($favorite))--}}
-                                        @if(auth()->user())
-
-                                            <div class="favorite">
-{{--                                            @if(isset($favorite))--}}
-                                            <i class="{{$favorite ? 'fa-solid fa-heart fa-xl favorite' : 'fa-regular fa-heart fa-xl favorite'}}" data-value="{{$item->id}}" style="color: #fa0000;"></i>
-{{--                                                @endif--}}
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="property-summary">
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -117,6 +117,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <div class="col-md-6 col-lg-7 section-md-t3">
 
                             <div class="row section-t3">
