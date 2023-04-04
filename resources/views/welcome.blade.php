@@ -173,7 +173,8 @@
         <div id="property-carousel" class="owl-carousel owl-theme">
             @foreach($item as $item)
                 <div class="carousel-item-b">
-                    <div class="img-box-a">
+                    <span class="badge" style="background: #2ECA6A;padding: 0.5rem 1rem;z-index: 2;position: absolute;top:0;left: 0;">Sale</span>
+                    <div class="img-box-a" style="position: relative">
                         <img src={{$item->photo_url ? $item->photo_url[0]:''}} alt="Image" class="img-a img-fluid" style="width: 100%;height: 250px;object-fit: cover;">
                     </div>
                     <div class="d-flex justify-content-between align-items-center pt-2">
@@ -181,8 +182,6 @@
                             <a href="{{route('listings.show', $item->id)}}">{{$item->title}}</a>
                         </h5>
                         <h4>Rs:{{$item->price}}</h4>
-
-
                     </div>
                     <div class="card-tag">
                         <span>{{json_decode($item->features)->bedroom ?:0}}</span>
@@ -193,7 +192,6 @@
                         <span>Area</span> |
                         <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>
                         <span>Parking</span>
-
                     </div>
                     <p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
                     <a href="{{route('listings.show', $item->id)}}" class="btn btn-secondary ">Read More</a>

@@ -9,7 +9,7 @@
 @section('main-container')
     <section class="intro-single">
         <div class="container">
-            <div class="row">
+            <div class="row pt-5">
                 <div class="col-md-12 col-lg-20">
                     <div class="title-single-box mb-5">
                         <h1 class="title-single">Your Property Listings on Sale</h1>
@@ -22,73 +22,50 @@
                         @if($listings->isNotEmpty())
                         @foreach ($listings as $item)
                             <div class="col-md-4 my-2">
-                                <div class="card-box-a card-shadow">
-                                    <div class="img-box-a" style="height: 53vh">
-                                        @if($item->getMedia('listings')->isNotEmpty())
-                                            <img src="{{$item->getMedia('listings')[0]->getFullUrl()}}"
-                                                 alt="Property Image"
-                                                 class="img-a img-fluid thumbnail" style="object-fit: cover">
-                                        @else
-                                            <img src="{{asset('img/download.png')}}" alt="Property Image"
-                                                 class="img-a img-fluid thumbnail" style="object-fit: cover">
-                                        @endif
-                                    </div>
-                                    <div class="card-overlay">
-                                        <div class="card-overlay-a-content">
-                                            <div class="card-header-a">
-                                                <h4 class="card-title-a text-sm">
-                                                    <a href="{{route($route.'show', $item->id)}}">{{$item->title}}
-                                                        <br/> </a>
-                                                </h4>
-                                            </div>
-                                            <div class="card-body-a">
-                                                <div class="price-box d-flex">
-                                                    <span class="price-a">Price | Rs {{$item->price}}</span>
-                                                </div>
-                                                <a href="{{route($route.'show', $item->id)}}" class="link-a mr-2">Click
-                                                    here
-                                                    to
-                                                    view
-                                                    <span class="ion-ios-arrow-forward"></span>
-                                                </a>
-                                                <div class="d-inline-flex float-right">
-                                                    <a href="{{ route($route.'edit',$item->id) }}" type="submit"
-                                                       class="btn btn-primary mr-2"><i
-                                                            class="fas fa-pencil-alt fa-md"></i></a>
-                                                    <form class="d-inline"
-                                                          action="{{ route($route.'destroy',$item->id) }}"
-                                                          method="POST" onclick="return confirm('Are you sure?')">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button href="{{route($route.'destroy',$item->id)}}"
-                                                                type="submit"
-                                                                class="btn btn-danger"><i
-                                                                class="fas fa-trash fa-md"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-
-                                            </div>
-                                            <div class="card-footer-a">
-                                                <ul class="card-info d-flex justify-content-around">
-                                                    <li>
-                                                        <h4 class="card-info-title">Area</h4>
-                                                        {{json_decode($item->features)->area}}
-                                                        <span> m
-                                                    <sup>2</sup>
-                                                  </span>
-                                                    </li>
-                                                    <li>
-                                                        <h4 class="card-info-title">Beds</h4>
-                                                        <span>{{json_decode($item->features)->bedroom}}</span>
-                                                    </li>
-                                                    <li>
-                                                        <h4 class="card-info-title">Baths</h4>
-                                                        <span>{{json_decode($item->features)->bathroom}}</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                <div class="carousel-item-b">
+                                        <div class="img-box-a" >
+                                            @if($item->getMedia('listings')->isNotEmpty())
+                                                <img src="{{$item->getMedia('listings')[0]->getFullUrl()}}"
+                                                     alt="Property Image"
+                                                     class="img-a img-fluid thumbnail w-100" style="width: 100%;height: 250px;object-fit: cover">
+                                            @else
+                                                <img src="{{asset('img/download.png')}}" alt="Property Image"
+                                                     class="img-a img-fluid thumbnail w-100" style="width: 100%;height: 250px;object-fit: cover">
+                                            @endif
                                         </div>
+                                    <div class="d-flex justify-content-between align-items-center pt-2">
+                                        <h5 class="card-header-a">
+                                            <a href="{{route('listings.show', $item->id)}}">{{$item->title}}</a>
+                                        </h5>
+                                        <h4>Rs:{{$item->price}}</h4>
+                                    </div>
+                                    <div class="card-tag">
+                                        <span>{{json_decode($item->features)->bedroom ?:0}}</span>
+                                        <span>Bed</span> |
+                                        <span>{{json_decode($item->features)->bathroom ?:0}}</span>
+                                        <span>Baths</span> |
+                                        <span>{{json_decode($item->features)->area ?:0}}</span>
+                                        <span>Area</span> |
+                                        <span>{{json_decode($item->features)->parking ? 'Yes' : 'No'}}</span>
+                                        <span>Parking</span>
+                                    </div>
+                                    <p class="" style="margin: 0.5rem 0">{{$item->description?:'N/A'}}</p>
+                                    <a href="{{route('listings.show', $item->id)}}" class="btn btn-secondary ">Read More</a>
+                                    <div class="d-inline-flex float-right">
+                                        <a href="{{ route($route.'edit',$item->id) }}" type="submit"
+                                           class="btn btn-primary mr-2"><i
+                                                class="fas fa-pencil-alt fa-md"></i></a>
+                                        <form class="d-inline"
+                                              action="{{ route($route.'destroy',$item->id) }}"
+                                              method="POST" onclick="return confirm('Are you sure?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button href="{{route($route.'destroy',$item->id)}}"
+                                                    type="submit"
+                                                    class="btn btn-danger"><i
+                                                    class="fas fa-trash fa-md"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
