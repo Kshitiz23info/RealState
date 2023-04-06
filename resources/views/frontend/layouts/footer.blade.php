@@ -10,7 +10,7 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
-                <a class="navbar-brand text-brand" href="{{url('/')}}">Real<span class="color-b">Estate</span></a>
+                <a class="navbar-brand text-brand" href="{{url('/')}}">Property<span class="color-b">.com</span></a>
             </div>
             {{-- <div class="w-body-a">
               <p class="w-text-a color-text-a">

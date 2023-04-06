@@ -5,31 +5,36 @@
     </div>
 
     <div class="col-md-4 mb-3">
-        <label for="rent">How much is the monthly rent?<span style="color: red;"> *</span></label>
-        <input type="number" class="form-control" id="rent" placeholder="Rent" name="rent" {{ isset($features) ? $features['rent'] : ''}}>
+        <label for="price">How much is the monthly rent?<span style="color: red;"> *</span></label>
+        <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="{{ $item ? $item->price : ''}}" required>
     </div>
 
+    <div class="col-md-4 mb-3">
+        <div class="form-group">
+            <label>Property Type </label><br>
+            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
+            <select class="custom-select type"  name="type" id="type">
+                <option value="Home" {{isset($features) ? ($features['type'] == "Home"?'selected': ''): ''}}>Home</option>
+                <option value="Land" {{isset($features) ? ($features['type'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
+            </select>
+        </div>
+    </div>
     <div class="col-md-4 mb-3">
         <label for="deposit">How much is the security deposit?</label>
         <input type="number" class="form-control" id="deposit" placeholder="Deposit" name="deposit" value="{{isset($features) ? $features['deposit'] : ''}}">
     </div>
 
     <div class="col-md-4 mb-3">
-        <label for="duration">Lease Duration</label>
-        <input type="number" class="form-control" id="duration" placeholder="Lease Duration" value="{{isset($features) ? $features['duration'] : ''}}" name="duration">
-    </div>
-
-    <div class="col-md-4 mb-3">
-        <label for="area">Area of the property</label>
+        <label for="area">Area of the property (m <sup>2</sup>)</label>
         <input type="number" class="form-control" id="area" placeholder="Area" value="{{isset($features) ? $features['area'] : ''}}" name="area" >
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3" id="bedroomLabel">
         <label for="bedroom">Number of Bedroom</label>
         <input type="number" class="form-control" id="bedroom" placeholder="Bedroom" value="{{isset($features) ? $features['bedroom'] : ''}}" name="bedroom">
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3" id="bathroomLabel">
         <label for="bathroom">Number of Bathroom</label>
         <input type="number" class="form-control" id="bathroom" placeholder="Bathroom" value="{{isset($features) ? $features['bathroom'] : ''}}" name="bathroom">
         {{-- <div class="valid-feedback">
@@ -37,7 +42,7 @@
         </div> --}}
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3" id="livingroomLabel">
         <label for="livingroom">Number of Living Room</label>
         <input type="number" class="form-control" id="livingroom" placeholder="Living room" value="{{isset($features) ? $features['livingroom'] : ''}}" name="livingroom">
         {{-- <div class="valid-feedback">
@@ -45,7 +50,7 @@
         </div> --}}
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3" id="kitchenLabel">
         <label for="kitchen">Number of Kitchen</label>
         <input type="number" class="form-control" id="kitchen" placeholder="Kitchen" value="{{isset($features) ? $features['kitchen'] : ''}}" name="kitchen">
         {{-- <div class="valid-feedback">
@@ -53,61 +58,67 @@
         </div> --}}
     </div>
 
-    <div class="col-md-4 mb-3">
-        <label for="rent_date">Date available for rent</label>
-        <input type="date" class="form-control" id="rent_date" placeholder="Date Available " value="{{isset($features) ? $features['rent_date'] : ''}}" name="rent_date">
-        {{-- <div class="valid-feedback">
-          Looks good!
-        </div> --}}
-    </div>
-
-    <div class="col-md-4 mb-3">
-        <label for="no_of_stories">Number of stories</label>
+    <div class="col-md-4 mb-3" id="no_of_storiesLabel">
+        <label for="no_of_stories" >Number of stories</label>
         <input type="number" class="form-control" id="no_of_stories" placeholder="No of stories" value="{{isset($features) ? $features['no_of_stories'] : ''}}" name="no_of_stories">
         {{-- <div class="valid-feedback">
           Looks good!
         </div> --}}
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3" id="road_widthLabel">
         <label for="road_width">Road width</label>
         <input type="text" class="form-control" id="road_width" placeholder="Road width" value="{{isset($features) ? $features['road_width'] : ''}}" name="road_width">
         {{-- <div class="valid-feedback">
           Looks good!
         </div> --}}
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3" id="parkingLabel">
         <label for="parking">Is parking available?</label>
-        <input type="text" class="form-control" id="parking" placeholder="Parking" value="{{isset($features) ? $features['parking'] : ''}}" name="parking">
+        <select class="form-control" name="parking" id="parking">
+            <option value="{{null}}">Select Option</option>
+            <option value="yes"{{isset($features) ? ($features['parking'] == "yes"?'selected': ''): ''}}>Yes</option>
+            <option value="no"{{isset($features) ? ($features['parking'] == "no"?'selected': ''): ''}}>No</option>
+        </select>
+        {{--        <input type="text" class="form-control" id="parking" placeholder="Parking" value="{{isset($features) ? $features['parking'] : ''}}" name="parking">--}}
         {{-- <div class="valid-feedback">
           Looks good!
         </div> --}}
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="form-group">
-            <label>Property Type</label><br>
-            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
-            <select class="custom-select type"  name="type">
-                <option value="Home" {{isset($features) ? ($features['bedroom'] == "Home"?'selected': ''): ''}}>Home</option>
-                <option value="Land" {{isset($features) ? ($features['bedroom'] == "Land" ? 'selected' : '' ): ''}}>Land</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="form-group">
-            <label>Price</label><span class="text-danger">*</span><br>
-            {{-- <input type="text" class="" id="validationServer06" placeholder="" value="" required name="type"> --}}
-            <input type="number" class="form-control" id="price" placeholder="Price" value="{{$item? $item->price : ''}}" required name="price">
 
-        </div>
+    <div class="col-md-4 mb-3" >
+        <label for="purpose">Purpose</label>
+        <select class="form-control" name="purpose" id="purpose">
+            <option value="rent"{{$item->type == "rent"?'selected': ''}}>Rent</option>
+            <option value="sale"{{$item->type == "sale"?'selected': ''}}>Sale</option>
+        </select>
+        {{--        <input type="text" class="form-control" id="parking" placeholder="Parking" value="{{isset($features) ? $features['parking'] : ''}}" name="parking">--}}
+        {{-- <div class="valid-feedback">
+          Looks good!
+        </div> --}}
 
     </div>
-    <div class="col-md-6 mb-3">
+    @if($item->type == 'rent')
+        <div class="col-md-4 mb-3" id="durationLabel">
+            <label for="duration">Lease Duration <span>(per Year)</span></label>
+{{--            {{dd($features['duration'])}}--}}
+            <input type="number" class="form-control" id="duration" placeholder="Lease Duration" value="2" name="duration">
+        </div>
+        <div class="col-md-4 mb-3" id="rent_dateLabel">
+            <label for="rent_date">Date available for rent</label>
+            <input type="date" class="form-control" id="rent_date" placeholder="Date Available " value="{{isset($features) ? $features['rent_date'] : ''}}" name="rent_date">
+            {{-- <div class="valid-feedback">
+              Looks good!
+            </div> --}}
+        </div>
+    @endif
+
+    <div class="col-md-6 mb-3" id="imageDiv">
         <label for="image">Images of the property <span class="text-danger">*</span></label>
         <div class="file-section">
             <button class="btn  btn-outline-primary mr-2 " id="file-upload"><i class="fa-solid fa-upload"></i>Attach File
             </button>
-            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" style="display:none" accept="image/png, image/gif, image/jpeg">
+            <input type="file" class="" multiple name="files[]" id="file-upload-hidden" @if(isset($item) && $item->photo_url)  @else required @endif style="display:none"  accept="image/png, image/gif, image/jpeg">
         </div>
     </div>
     <span id="message"></span>
@@ -197,7 +208,7 @@
                 var address = data.display_name;
 
                 $('#location').val(address.split(",")[1]+','+address.split(",")[2]+ ',' +address.split(",")[3]+ ',' +address.split(",")[4]+','+address.split(",")[5]);
-               // console.log(address);
+                // console.log(address);
             })
             .catch(error => console.error(error));
 
@@ -206,22 +217,22 @@
 </script>
 <div class="form-row mt-4">
     <div class="col-md-4 mb-3">
-        <label for="location">Location</label>
-        <input type="text" class="form-control w-100" id="location" placeholder="Location" name="location" value="{{$item? $item->location: ''}}">
+        <label for="location">Location <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" id="location" placeholder="Location" required readonly name="location" value="{{$item? $item->location: ''}}">
         <div class="">
             {{-- Please provide a valid state. --}}
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control w-100" id="latitude" placeholder="Latitude" name="latitude" value="{{$item? $item->latitude: ''}}">
+        <label for="latitude">Latitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" id="latitude" placeholder="Latitude"required readonly name="latitude" value="{{$item? $item->latitude: ''}}">
         <div class="">
             {{-- Please provide a valid zip. --}}
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <label for="longitude">Longitude</label>
-        <input type="text" class="form-control w-100" id="longitude" placeholder="Longitude" name="longitude" value="{{$item? $item->longitude: ''}}">
+        <label for="longitude">Longitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control w-100" id="longitude" placeholder="Longitude" required readonly name="longitude" value="{{$item? $item->longitude: ''}}">
         <div class="">
             {{-- Please provide a valid city. --}}
         </div>

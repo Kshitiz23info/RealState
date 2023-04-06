@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'RealEstate'),
+    'name' => env('APP_NAME', 'Property.com'),
 
     /*
     |--------------------------------------------------------------------------

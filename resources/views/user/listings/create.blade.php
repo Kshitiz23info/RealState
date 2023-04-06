@@ -7,7 +7,7 @@
                     <h2 class="mb-3">Rent Property Details</h2><br>
                     <form method="POST"  enctype="multipart/form-data" action="{{route('listings.store')}}">
                         @csrf
-                        @include('user.listings.form', ['item'=>null])
+                        @include('admin.listings.form', ['item'=>null])
 
 {{--                        <div class="form-group">--}}
 {{--                            <div class="form-check">--}}

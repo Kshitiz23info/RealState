@@ -40,14 +40,13 @@ class ListingController extends BaseController
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Listing $listing)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'price' => 'required|numeric',
         ]);
         $features = [
-            "rent" => $request->rent,
             "deposit" => $request->deposit,
             "duration" => $request->duration,
             "area" => $request->area,
@@ -70,10 +69,13 @@ class ListingController extends BaseController
             'latitude' => $request->latitude?:null,
             'longitude' => $request->longitude?:null,
             'user_id' => auth()->user()->id,
+            'type' => $request->purpose,
             'features' => json_encode($features, true),
         ];
 
+        $listing = Listing::findOrFail($id);
         $listing->update($data);
+
         if ($request->file('files') && count($request->file('files')) > 0) {
             foreach ($request->file('files') as $document) {
                 $name = round(microtime(true) * 1000) . '-' . rand(111, 999);

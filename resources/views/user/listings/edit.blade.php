@@ -8,7 +8,7 @@
                     <form method="POST"  enctype="multipart/form-data" action="{{route('listings.update', $item->id)}}">
                         @csrf
                         @method('PUT')
-                        @include('user.listings.form', [
+                        @include('admin.listings.form', [
                             'item' =>$item,
                             'features' => json_decode($item->features, true)
                         ])
